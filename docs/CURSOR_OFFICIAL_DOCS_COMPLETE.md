@@ -972,18 +972,18 @@ sequenceDiagram
 
 ### 13.1 命令列表
 
-| 命令 | 说明 |
-|------|------|
-| `/model <model>` | 设置或列出模型 |
-| `/auto-run [state]` | 切换自动运行（默认）或设置为 [on\|off\|status] |
-| `/new-chat` | 开启新聊天会话 |
-| `/vim` | 切换 Vim 按键 |
-| `/help [command]` | 显示帮助（/help [cmd]） |
-| `/feedback <message>` | 向团队提交反馈 |
-| `/resume <chat>` | 按文件夹名称恢复先前聊天 |
-| `/copy-req-id` | 复制上一条请求 ID |
-| `/logout` | 退出 Cursor 账号 |
-| `/quit` | 退出 |
+| 命令                  | 说明                                           |
+| --------------------- | ---------------------------------------------- |
+| `/model <model>`      | 设置或列出模型                                 |
+| `/auto-run [state]`   | 切换自动运行（默认）或设置为 [on\|off\|status] |
+| `/new-chat`           | 开启新聊天会话                                 |
+| `/vim`                | 切换 Vim 按键                                  |
+| `/help [command]`     | 显示帮助（/help [cmd]）                        |
+| `/feedback <message>` | 向团队提交反馈                                 |
+| `/resume <chat>`      | 按文件夹名称恢复先前聊天                       |
+| `/copy-req-id`        | 复制上一条请求 ID                              |
+| `/logout`             | 退出 Cursor 账号                               |
+| `/quit`               | 退出                                           |
 
 ---
 
@@ -1028,10 +1028,10 @@ cursor-agent --api-key your_api_key_here "实现用户认证"
 #### Shell 命令
 **格式**: `Shell(commandBase)`
 
-| 示例 | 说明 |
-|------|------|
-| `Shell(ls)` | 允许运行 `ls` 命令 |
-| `Shell(git)` | 允许任意 `git` 子命令 |
+| 示例         | 说明                      |
+| ------------ | ------------------------- |
+| `Shell(ls)`  | 允许运行 `ls` 命令        |
+| `Shell(git)` | 允许任意 `git` 子命令     |
 | `Shell(npm)` | 允许使用 npm 包管理器命令 |
 
 #### 文件读取/写入
@@ -1063,11 +1063,11 @@ cursor-agent --api-key your_api_key_here "实现用户认证"
 
 ### 16.1 文件位置
 
-| 类型 | 平台 | 路径 |
-|------|------|------|
-| 全局 | macOS/Linux | `~/.cursor/cli-config.json` |
-| 全局 | Windows | `$env:USERPROFILE\.cursor\cli-config.json` |
-| 项目 | 全部 | `<project>/.cursor/cli.json` |
+| 类型 | 平台        | 路径                                       |
+| ---- | ----------- | ------------------------------------------ |
+| 全局 | macOS/Linux | `~/.cursor/cli-config.json`                |
+| 全局 | Windows     | `$env:USERPROFILE\.cursor\cli-config.json` |
+| 项目 | 全部        | `<project>/.cursor/cli.json`               |
 
 ### 16.2 配置示例
 ```json
