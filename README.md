@@ -1,12 +1,12 @@
-# {PROJECT_NAME} — Cursor 多角色 Agent 团队模板
+# Cursor 多角色 Agent 团队模板
 
-一套可在 Cursor IDE 中直接运行的“多角色 Agent 团队（PO/PM/BA/PjM/Arch/LLME/DEV/QA/Ops/TW）”0→1 自主交付模板。
+一套可在 Cursor IDE 中直接运行的"多角色 Agent 团队（PO/PM/BA/PjM/Arch/LLME/DEV/QA/Ops/TW）"0→1 自主交付模板。
 
 ## 快速开始
 ```bash
 # 克隆并进入
-git clone <your-repo-url> {PROJECT_NAME}
-cd {PROJECT_NAME}
+git clone https://github.com/Poghappy/cursor-.git
+cd cursor-
 
 # 准备环境
 cp .env.example .env
