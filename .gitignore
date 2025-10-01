@@ -15,7 +15,9 @@ coverage/
 !.env.example
 
 # IDE and editor files
-.vscode/
+# .vscode/ - 保留项目级 VSCode 配置以便团队协作
+.vscode/launch.json
+.vscode/tasks.json
 .idea/
 *.swp
 *.swo

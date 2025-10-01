@@ -4,4 +4,5 @@ coverage/
 *.d.ts
 *.js
 *.js.map
-tests/
+# 移除 tests/ 以允许测试文件的 ESLint 检查
+# tests/ 目录应该被检查以确保测试代码质量
