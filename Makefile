@@ -60,6 +60,20 @@ init: ## 初始化项目
 	@mkdir -p $(SRC_DIR) $(DOCS_DIR) $(TESTS_DIR) $(PROMPTS_DIR)/roles $(PROMPTS_DIR)/stages $(CURSOR_DIR)/rules
 	@echo "$(GREEN)项目初始化完成$(NC)"
 
+# 初始化新项目（基于模板）
+.PHONY: init-new-project
+init-new-project: ## 基于模板初始化新项目
+	@echo "$(BLUE)基于模板创建新项目...$(NC)"
+	@./scripts/create-project.sh --interactive
+	@echo "$(GREEN)新项目创建完成$(NC)"
+
+# 配置 Agent 环境
+.PHONY: setup-agent
+setup-agent: ## 配置 Cursor Agent 环境
+	@echo "$(BLUE)配置 Agent 环境...$(NC)"
+	@./scripts/setup-agent.sh
+	@echo "$(GREEN)Agent 环境配置完成$(NC)"
+
 # 环境设置
 .PHONY: setup
 setup: init ## 设置开发环境

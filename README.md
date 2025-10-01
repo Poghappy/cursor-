@@ -3,6 +3,7 @@
 一套可在 Cursor IDE 中直接运行的"多角色 Agent 团队（PO/PM/BA/PjM/Arch/LLME/DEV/QA/Ops/TW）"0→1 自主交付模板。
 
 ## 快速开始
+
 ```bash
 # 克隆并进入
 git clone https://github.com/Poghappy/cursor-.git
@@ -20,7 +21,8 @@ make coverage     # 覆盖率
 ```
 
 ## 目录结构
-```
+
+```text
 .
 ├─ docs/                  # BRIEF/PRD/TASKS/TECH_DESIGN/TEST_PLAN/CHANGELOG
 ├─ prompts/
@@ -37,6 +39,7 @@ make coverage     # 覆盖率
 ```
 
 ## 工作方式（概览）
+
 - 多角色通过 `prompts/roles/*` 各司其职，阶段流经 `prompts/stages/*`。
 - 规则在 `.cursor/rules/*` 定义：
   - `agent_functions.md`: 可调用函数与输入/输出/约束
@@ -45,9 +48,11 @@ make coverage     # 覆盖率
 - 守护与基线：`prompts/roles/_guardrails.md`。
 
 ## 自定义占位符
+
 - `{PROJECT_NAME}` `{LINT_CMD}` `{TEST_CMD}` `{COVERAGE_CMD}` `{MAX_FILES}` `{MAX_LINES}` 参见 Makefile/规则与文档模板。
 
 ## 约定
+
 - Conventional Commits
 - 先测后码；最小可用实现；文件树 Diff 必须可读
 - 不写入密钥，仅维护 `.env.example` 与说明
