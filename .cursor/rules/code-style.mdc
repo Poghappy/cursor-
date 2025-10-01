@@ -1,0 +1,10 @@
+---
+description: 代码风格与提交规范
+alwaysApply: false
+---
+
+- 统一风格：TypeScript、ESLint、Prettier；禁止 any 滥用
+- 命名清晰：函数用动词短语，变量用名词短语，不使用缩写
+- 控制流：优先早返回，避免 3 层以上深嵌套
+- 提交信息：Conventional Commits（feat/fix/docs/chore/test/refactor 等）
+- 变更必须伴随相应测试与文档更新

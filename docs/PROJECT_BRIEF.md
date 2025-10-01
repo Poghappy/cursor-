@@ -1,0 +1,49 @@
+# {PROJECT_NAME} - 项目概览
+
+## 目标
+- 主要目标：{GOAL}
+- 业务价值：{BUSINESS_VALUE}
+
+## 非目标(Out of Scope)
+- 明确不包含的功能
+- 技术限制和边界
+- 时间范围外的特性
+
+## 目标用户画像
+- 主要用户：{PRIMARY_USERS}
+- 次要用户：{SECONDARY_USERS}
+- 用户特征：{USER_CHARACTERISTICS}
+
+## 里程碑
+- M1: {MILESTONE_1} - {DATE_1}
+- M2: {MILESTONE_2} - {DATE_2}
+- M3: {MILESTONE_3} - {DATE_3}
+
+## 成功指标(KPI/OKR)
+- 功能指标：{FUNCTIONAL_METRICS}
+- 性能指标：{PERFORMANCE_METRICS}
+- 用户满意度：{USER_SATISFACTION}
+
+## 约束
+- 法律合规：{LEGAL_CONSTRAINTS}
+- 隐私保护：{PRIVACY_CONSTRAINTS}
+- 性能要求：{PERFORMANCE_CONSTRAINTS}
+- 平台限制：{PLATFORM_CONSTRAINTS}
+
+## 非功能目标
+- 性能：{PERFORMANCE_TARGETS}
+- 可用性：{AVAILABILITY_TARGETS}
+- 安全性：{SECURITY_TARGETS}
+- 可观测性：{OBSERVABILITY_TARGETS}
+- 可访问性：{ACCESSIBILITY_TARGETS}
+
+## 风险清单
+- 技术风险：{TECHNICAL_RISKS}
+- 业务风险：{BUSINESS_RISKS}
+- 时间风险：{TIMELINE_RISKS}
+- 资源风险：{RESOURCE_RISKS}
+
+## 假设条件
+- 技术假设：{TECHNICAL_ASSUMPTIONS}
+- 业务假设：{BUSINESS_ASSUMPTIONS}
+- 用户假设：{USER_ASSUMPTIONS}

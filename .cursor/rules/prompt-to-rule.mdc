@@ -1,0 +1,12 @@
+---
+description: 将对话结论沉淀为可复用规则（/Generate Cursor Rules）
+alwaysApply: false
+---
+
+- 在 Chat 中执行命令：`/Generate Cursor Rules`
+- 选择需要沉淀的要点：风格、流程、接口契约、异常处理、质量门禁等
+- 输出为 `.cursor/rules/*.mdc` 小而专、可组合的规则文件；每条≤500 行
+- 规则文件头部注明：来源（对话链接/日期）、适用范围（目录/模块）、维护人
+- 新增/更新后：
+  - 本地运行 `node scripts/policy-checks.js`（长度/禁词/敏感扫描）
+  - 在 PR 中附“文件树 Diff”与影响面，更新 `docs/CHANGELOG.md`

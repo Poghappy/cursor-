@@ -1,0 +1,9 @@
+---
+description: 交接与可验证交付
+alwaysApply: false
+---
+
+- 每轮交付以统一 JSON（handover_schema.md）输出：含 inputs/decisions/artifacts/risks/next_role
+- 交付前必须通过 `{LINT_CMD}` 与 `{TEST_CMD}`，附 `{COVERAGE_CMD}` 摘要（如适用）
+- 故障仅贴最短必要日志，快速定位根因与最小修复后复测
+- 禁止提交任何密钥/令牌/私钥，仅维护 `.env.example` 与 README 说明

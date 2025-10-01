@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "cursor-docs": {
+      "type": "http",
+      "url": "https://cursor.com/docs",
+      "headers": {}
+    },
+    "cursor-changelog": {
+      "type": "http",
+      "url": "https://cursor.com/changelog",
+      "headers": {}
+    },
+    "awesome-cursorrules": {
+      "type": "http",
+      "url": "https://github.com/PatrickJS/awesome-cursorrules",
+      "headers": {}
+    }
+  }
+}
