@@ -1,0 +1,65 @@
+{
+  "github": {
+    "repository": "Poghappy/cursor-",
+    "indexing": {
+      "enabled": true,
+      "autoIndex": true,
+      "indexOnEvents": ["push", "pull_request", "pull_request_review"],
+      "includeBranches": ["main", "develop", "feature/*"],
+      "excludeFiles": ["*.log", "node_modules/**", "dist/**"]
+    },
+    "search": {
+      "enabled": true,
+      "semanticSearch": true,
+      "codeSearch": true,
+      "commentSearch": true,
+      "maxResults": 50
+    },
+    "analysis": {
+      "autoSummarize": true,
+      "codeQualityCheck": true,
+      "securityScan": true,
+      "performanceAnalysis": true
+    }
+  },
+  "notifications": {
+    "prCreated": true,
+    "prUpdated": true,
+    "reviewRequested": true,
+    "conflictDetected": true
+  },
+  "automation": {
+    "autoAssignReviewers": true,
+    "autoLabelPRs": true,
+    "autoMergeCriteria": {
+      "requiresApproval": true,
+      "requiresPassingTests": true,
+      "requiresUpToDateBranch": true
+    }
+  },
+  "templates": {
+    "prDescription": {
+      "sections": [
+        "## 变更概述",
+        "## 测试说明",
+        "## 影响面分析",
+        "## 回滚方案",
+        "## 检查清单",
+        "- [ ] 代码已通过 lint 检查",
+        "- [ ] 单元测试已通过",
+        "- [ ] 集成测试已通过",
+        "- [ ] 文档已更新",
+        "- [ ] 变更日志已更新"
+      ]
+    },
+    "reviewChecklist": [
+      "代码逻辑正确性",
+      "错误处理完整性",
+      "性能影响评估",
+      "安全性检查",
+      "测试覆盖率",
+      "文档完整性",
+      "向后兼容性"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "projectContext": {
+    "name": "Cursor 多角色 Agent 团队模板",
+    "description": "一套可在 Cursor IDE 中直接运行的多角色 Agent 团队协作模板",
+    "techStack": [
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "Jest",
+      "PostgreSQL",
+      "Redis"
+    ],
+    "architecture": "微服务架构，业务逻辑分离",
+    "testStrategy": "单元测试 + 集成测试 + E2E 测试"
+  },
+  "teamRoles": {
+    "po": "产品负责人 - 需求定义和优先级管理",
+    "pm": "项目经理 - 进度管理和资源协调",
+    "ba": "业务分析师 - 需求分析和业务流程设计",
+    "pjm": "项目管理 - 风险管理和质量控制",
+    "arch": "架构师 - 技术架构和设计决策",
+    "llme": "LLM 工程师 - AI 集成和优化",
+    "dev": "开发工程师 - 代码实现和单元测试",
+    "qa": "质量保证 - 测试策略和质量控制",
+    "ops": "运维工程师 - 部署和监控",
+    "tw": "技术写作 - 文档和知识管理"
+  },
+  "workflowStages": [
+    "user_story - 用户故事收集",
+    "prd - 产品需求文档",
+    "task_breakdown - 任务分解",
+    "tech_design - 技术设计",
+    "implementation - 代码实现",
+    "qa_test - 质量测试",
+    "iteration - 迭代优化"
+  ],
+  "codeStandards": {
+    "commitFormat": "Conventional Commits",
+    "maxFilesPerChange": 5,
+    "maxLinesPerFile": 100,
+    "testCoverage": ">=80%",
+    "lintRules": "ESLint + TypeScript strict"
+  },
+  "preferences": {
+    "responseLanguage": "Chinese-simplified",
+    "codeComments": "Chinese for business logic, English for technical details",
+    "errorHandling": "统一业务错误抛出和响应结构",
+    "logging": "Winston with structured logging"
+  }
+}

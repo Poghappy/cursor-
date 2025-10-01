@@ -1,0 +1,134 @@
+{
+  "todoTemplates": {
+    "feature_development": {
+      "name": "功能开发模板",
+      "steps": [
+        {
+          "id": "requirements_analysis",
+          "title": "需求分析",
+          "description": "分析用户需求，明确功能边界",
+          "assignedRole": "ba",
+          "estimatedTime": "2h",
+          "dependencies": []
+        },
+        {
+          "id": "technical_design",
+          "title": "技术设计",
+          "description": "设计技术方案和架构",
+          "assignedRole": "arch",
+          "estimatedTime": "4h",
+          "dependencies": ["requirements_analysis"]
+        },
+        {
+          "id": "task_breakdown",
+          "title": "任务分解",
+          "description": "将功能分解为具体开发任务",
+          "assignedRole": "pjm",
+          "estimatedTime": "1h",
+          "dependencies": ["technical_design"]
+        },
+        {
+          "id": "implementation",
+          "title": "代码实现",
+          "description": "编写功能代码和单元测试",
+          "assignedRole": "dev",
+          "estimatedTime": "8h",
+          "dependencies": ["task_breakdown"]
+        },
+        {
+          "id": "quality_assurance",
+          "title": "质量保证",
+          "description": "执行测试计划，确保质量",
+          "assignedRole": "qa",
+          "estimatedTime": "4h",
+          "dependencies": ["implementation"]
+        },
+        {
+          "id": "documentation",
+          "title": "文档更新",
+          "description": "更新相关文档和说明",
+          "assignedRole": "tw",
+          "estimatedTime": "2h",
+          "dependencies": ["quality_assurance"]
+        }
+      ]
+    },
+    "bug_fix": {
+      "name": "Bug 修复模板",
+      "steps": [
+        {
+          "id": "bug_analysis",
+          "title": "Bug 分析",
+          "description": "分析 Bug 原因和影响范围",
+          "assignedRole": "dev",
+          "estimatedTime": "1h",
+          "dependencies": []
+        },
+        {
+          "id": "fix_implementation",
+          "title": "修复实现",
+          "description": "实现 Bug 修复方案",
+          "assignedRole": "dev",
+          "estimatedTime": "2h",
+          "dependencies": ["bug_analysis"]
+        },
+        {
+          "id": "regression_test",
+          "title": "回归测试",
+          "description": "执行回归测试确保修复有效",
+          "assignedRole": "qa",
+          "estimatedTime": "1h",
+          "dependencies": ["fix_implementation"]
+        }
+      ]
+    },
+    "refactoring": {
+      "name": "重构模板",
+      "steps": [
+        {
+          "id": "refactor_planning",
+          "title": "重构规划",
+          "description": "制定重构计划和策略",
+          "assignedRole": "arch",
+          "estimatedTime": "2h",
+          "dependencies": []
+        },
+        {
+          "id": "test_preparation",
+          "title": "测试准备",
+          "description": "准备重构前的测试覆盖",
+          "assignedRole": "qa",
+          "estimatedTime": "3h",
+          "dependencies": ["refactor_planning"]
+        },
+        {
+          "id": "refactor_execution",
+          "title": "重构执行",
+          "description": "执行代码重构",
+          "assignedRole": "dev",
+          "estimatedTime": "6h",
+          "dependencies": ["test_preparation"]
+        },
+        {
+          "id": "validation",
+          "title": "验证测试",
+          "description": "验证重构后功能正常",
+          "assignedRole": "qa",
+          "estimatedTime": "2h",
+          "dependencies": ["refactor_execution"]
+        }
+      ]
+    }
+  },
+  "autoBreakdownRules": {
+    "maxTaskComplexity": 8,
+    "maxTaskDuration": "1d",
+    "preferredTaskSize": "2-4h",
+    "dependencyDepthLimit": 3
+  },
+  "progressTracking": {
+    "statusTypes": ["todo", "in_progress", "review", "done", "blocked"],
+    "autoStatusUpdate": true,
+    "notificationEnabled": true
+  }
+}
