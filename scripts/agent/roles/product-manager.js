@@ -318,7 +318,7 @@ async function main() {
                 break;
         }
     } catch (error) {
-        console.error(`❌ 执行失败: ${ error.message } `);
+        console.error('❌ 执行失败: ' + error.message);
         process.exit(1);
     }
 }

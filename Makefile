@@ -690,6 +690,23 @@ developer-tools: ## 💻 启动开发工程工具
 	@echo "$(BLUE)💻 启动开发工程工具...$(NC)"
 	@node scripts/agent/roles/developer-tools.js
 
+# 增强版本工具
+llme-enhanced: ## 🤖 启动 LLME 增强版本（集成提示工程工具包）
+	@echo "$(BLUE)🤖 启动 LLME 增强版本...$(NC)"
+	@node scripts/agent/roles/llme-enhanced.js
+
+dev-enhanced: ## 💻 启动 Dev 增强版本（集成智能代码生成器）
+	@echo "$(BLUE)💻 启动 Dev 增强版本...$(NC)"
+	@node scripts/agent/roles/dev-enhanced.js
+
+qa-enhanced: ## 🧪 启动 QA 增强版本（集成通用测试框架）
+	@echo "$(BLUE)🧪 启动 QA 增强版本...$(NC)"
+	@node scripts/agent/roles/qa-enhanced.js
+
+github-integration: ## 🔗 启动 GitHub 工具集成管理器
+	@echo "$(BLUE)🔗 启动 GitHub 工具集成管理器...$(NC)"
+	@node scripts/agent/roles/github-integration.js
+
 code-generate: ## ⚡ 代码生成
 	@echo "$(BLUE)⚡ 代码生成...$(NC)"
 	@node scripts/agent/roles/developer-tools.js generate --type=service --template=crud
