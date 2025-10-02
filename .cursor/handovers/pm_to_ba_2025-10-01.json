@@ -1,0 +1,435 @@
+{
+  "from_role": "pm",
+  "to_role": "ba",
+  "stage": "task_breakdown",
+  "timestamp": "2025-10-01T15:30:00+08:00",
+  "project": {
+    "name": "Cursor IDE 多角色 Agent 协作框架",
+    "version": "v1.0.0 MVP",
+    "phase": "M1.1 核心完善（Week 1-2）"
+  },
+  "context": {
+    "overview": "PM已完成详细的4周MVP项目计划，包含26个任务分解。现需要BA进一步细化任务说明，明确验收标准，并创建任务看板。",
+    "current_status": {
+      "project_plan": "✅ 已完成",
+      "task_breakdown": "✅ 已完成（26个任务）",
+      "milestone_plan": "✅ 已完成（M1.1/M1.2/M1.3）",
+      "resource_allocation": "✅ 已完成（8个角色）",
+      "risk_management": "✅ 已完成（7个风险）",
+      "next_step": "⏳ 任务细化和看板创建"
+    },
+    "background": {
+      "po_deliverables": [
+        "PRD v2 (15000字)",
+        "产品路线图 (3阶段)",
+        "产品KPI (12个指标)",
+        "用户故事 (6个Epic)",
+        "产品待办事项 (45个Story)"
+      ],
+      "pm_deliverables": [
+        "MVP项目计划 (50000字)",
+        "任务分解摘要 (26个任务)",
+        "4周冲刺计划",
+        "团队组织结构",
+        "风险管理计划"
+      ],
+      "mvp_completion": "79%",
+      "critical_gaps": ["FR-003 交接规范 70% → 100% (Week 1-2优先)", "FR-004 质量体系 60% → 100% (Week 1-2优先)"]
+    }
+  },
+  "deliverables": {
+    "completed": [
+      {
+        "name": "MVP项目计划",
+        "path": "docs/MVP_PROJECT_PLAN.md",
+        "size": "50000字",
+        "description": "完整的4周MVP冲刺计划，包含3个里程碑、26个任务、详细的时间安排和资源分配"
+      },
+      {
+        "name": "任务分解摘要",
+        "path": "docs/TASKS_SUMMARY.md",
+        "size": "2000字",
+        "description": "26个任务的概览表，包含工作量、负责人、时间、优先级等关键信息"
+      },
+      {
+        "name": "PM交接JSON",
+        "path": ".cursor/handovers/pm_to_ba_2025-10-01.json",
+        "size": "本文件",
+        "description": "PM到BA的正式交接文档"
+      }
+    ],
+    "in_progress": [],
+    "pending": ["任务详细说明文档", "验收标准检查清单", "任务依赖关系图", "任务看板系统", "Kick-off会议材料"]
+  },
+  "key_decisions": [
+    {
+      "id": "DEC-PM-001",
+      "title": "采用3里程碑4周冲刺模式",
+      "rationale": "平衡速度和质量，每2周一个检查点，确保风险可控",
+      "impact": "高",
+      "date": "2025-10-01"
+    },
+    {
+      "id": "DEC-PM-002",
+      "title": "Week1-2优先攻坚FR-003和FR-004",
+      "rationale": "这两个模块完成度最低（70%和60%），是MVP的关键阻塞点",
+      "impact": "高",
+      "date": "2025-10-01"
+    },
+    {
+      "id": "DEC-PM-003",
+      "title": "交接成功率目标：80% → 90% → 100%",
+      "rationale": "分阶段提升质量，避免一开始目标过高导致挫败感",
+      "impact": "中",
+      "date": "2025-10-01"
+    },
+    {
+      "id": "DEC-PM-004",
+      "title": "代码覆盖率目标：70% → 80%",
+      "rationale": "平衡测试质量和开发速度，80%是行业标准",
+      "impact": "中",
+      "date": "2025-10-01"
+    },
+    {
+      "id": "DEC-PM-005",
+      "title": "Week4进行真实案例验证",
+      "rationale": "用实战检验框架的完整性和可用性，发现潜在问题",
+      "impact": "高",
+      "date": "2025-10-01"
+    }
+  ],
+  "moscow_priorities": {
+    "must_have": [
+      "T001-T004: 交接规范完整可用",
+      "T005-T008: 质量工具全部配置",
+      "T011-T013: E2E测试通过",
+      "T020: 真实案例完成",
+      "T025-T026: MVP验收和发布"
+    ],
+    "should_have": ["T009: 质量文档完善", "T014-T015: 所有文档审阅", "T021: 案例文档化", "T024: 发布文档准备"],
+    "could_have": ["T016-T017: 性能和稳定性测试", "T022: 用户反馈收集", "T023: 优化改进"],
+    "wont_have_now": ["高级功能（留v1.1.0）", "UI界面（留v1.1.0）", "插件系统（留v2.0.0）"]
+  },
+  "risks": [
+    {
+      "id": "R-PM-001",
+      "title": "FR-003 Schema设计需要多次迭代",
+      "probability": "中",
+      "impact": "高",
+      "severity": "高",
+      "mitigation": [
+        "Week1组织Schema设计评审会",
+        "提前与团队讨论Schema需求",
+        "准备简化Schema的备选方案",
+        "预留2天缓冲时间"
+      ],
+      "owner": "Arch",
+      "status": "监控中"
+    },
+    {
+      "id": "R-PM-002",
+      "title": "现有代码Lint错误太多",
+      "probability": "高",
+      "impact": "中",
+      "severity": "中",
+      "mitigation": ["分批修复，优先核心模块", "暂时禁用部分规则", "逐步提升代码质量"],
+      "owner": "Dev",
+      "status": "监控中"
+    },
+    {
+      "id": "R-PM-003",
+      "title": "测试编写时间不足",
+      "probability": "中",
+      "impact": "高",
+      "severity": "高",
+      "mitigation": ["Week1就开始编写测试", "聚焦核心逻辑，降低覆盖率目标", "增加QA资源，Dev协助测试"],
+      "owner": "Dev+QA",
+      "status": "监控中"
+    },
+    {
+      "id": "R-PM-004",
+      "title": "真实案例构建发现框架问题",
+      "probability": "中",
+      "impact": "中",
+      "severity": "中",
+      "mitigation": ["边构建边优化框架", "提前预留优化时间", "选择复杂度适中的案例"],
+      "owner": "All",
+      "status": "监控中"
+    },
+    {
+      "id": "R-PM-005",
+      "title": "时间压力导致质量妥协",
+      "probability": "中",
+      "impact": "高",
+      "severity": "高",
+      "mitigation": ["严格质量门禁，不妥协", "每日站会跟踪进度", "必要时调整范围"],
+      "owner": "PM",
+      "status": "监控中"
+    }
+  ],
+  "next_actions": {
+    "immediate": [
+      {
+        "action": "创建详细的任务说明文档",
+        "description": "为26个任务编写详细的任务说明，包括背景、输入输出、技术细节、验收标准等",
+        "owner": "BA",
+        "deadline": "2025-10-01 EOD",
+        "priority": "P0"
+      },
+      {
+        "action": "明确每个任务的验收标准",
+        "description": "将验收标准转化为可检查的清单，确保明确、可测、无歧义",
+        "owner": "BA",
+        "deadline": "2025-10-01 EOD",
+        "priority": "P0"
+      },
+      {
+        "action": "创建任务看板系统",
+        "description": "在项目管理工具中创建看板，录入所有任务，设置状态和负责人",
+        "owner": "BA",
+        "deadline": "2025-10-01 EOD",
+        "priority": "P1"
+      }
+    ],
+    "short_term": [
+      {
+        "action": "准备Kick-off会议材料",
+        "description": "准备会议PPT，包括项目目标、里程碑、任务分解、团队分工等",
+        "owner": "BA + PM",
+        "deadline": "2025-10-02 9:00",
+        "priority": "P0"
+      },
+      {
+        "action": "召开项目Kick-off会议",
+        "description": "全员参加，对齐目标、明确分工、解答疑问、统一认识",
+        "owner": "PM",
+        "deadline": "2025-10-02 10:00-12:00",
+        "priority": "P0"
+      },
+      {
+        "action": "启动M1.1冲刺（T001-T010）",
+        "description": "开始执行Week 1-2的任务，建立每日站会机制",
+        "owner": "All Team",
+        "deadline": "2025-10-02 14:00",
+        "priority": "P0"
+      }
+    ],
+    "medium_term": [
+      {
+        "action": "每日站会进度跟踪",
+        "description": "每天9:00-9:15站会，同步进度、识别阻塞、协调资源",
+        "owner": "PM",
+        "deadline": "每日",
+        "priority": "P0"
+      },
+      {
+        "action": "Week1中期检查",
+        "description": "Day 3-4检查T001-T003进度，确保关键路径不偏离",
+        "owner": "PM",
+        "deadline": "2025-10-04",
+        "priority": "P1"
+      },
+      {
+        "action": "M1.1里程碑验收",
+        "description": "Day 14进行M1.1验收，确认所有交付物达标",
+        "owner": "PM + QA + PO",
+        "deadline": "2025-10-14",
+        "priority": "P0"
+      }
+    ]
+  },
+  "team_structure": {
+    "core_team": [
+      {
+        "role": "PM",
+        "name": "Project Manager",
+        "time_allocation": "100% 全职",
+        "responsibilities": ["项目计划和进度跟踪", "风险管控和问题解决", "团队协调和资源分配", "里程碑验收和汇报"],
+        "contact": "pm@project"
+      },
+      {
+        "role": "BA",
+        "name": "Business Analyst",
+        "time_allocation": "50% (Week 1-2)",
+        "responsibilities": ["任务详细说明", "验收标准明确", "需求澄清支持", "看板系统管理"],
+        "contact": "ba@project"
+      },
+      {
+        "role": "Arch",
+        "name": "Architect",
+        "time_allocation": "50% (Week 1-2)",
+        "responsibilities": ["Schema设计和评审", "技术方案制定", "架构决策支持", "代码审查"],
+        "contact": "arch@project"
+      },
+      {
+        "role": "Dev",
+        "name": "Developer",
+        "time_allocation": "100% 全职",
+        "responsibilities": ["编码实现", "单元测试编写", "代码质量保证", "技术文档编写"],
+        "contact": "dev@project"
+      },
+      {
+        "role": "QA",
+        "name": "QA Engineer",
+        "time_allocation": "75% (Week 2+)",
+        "responsibilities": ["测试计划和用例", "测试执行和报告", "质量门禁把关", "缺陷跟踪管理"],
+        "contact": "qa@project"
+      },
+      {
+        "role": "TW",
+        "name": "Technical Writer",
+        "time_allocation": "30% (持续)",
+        "responsibilities": ["文档编写和审阅", "示例创建", "文档质量保证", "知识库维护"],
+        "contact": "tw@project"
+      }
+    ],
+    "supporting_team": [
+      {
+        "role": "PO",
+        "name": "Product Owner",
+        "time_allocation": "20% 支持",
+        "responsibilities": ["需求澄清", "产品验收", "用户反馈收集"],
+        "contact": "po@project"
+      },
+      {
+        "role": "Ops",
+        "name": "Operations",
+        "time_allocation": "10% (Week 4)",
+        "responsibilities": ["发布准备", "环境配置", "部署支持"],
+        "contact": "ops@project"
+      }
+    ]
+  },
+  "communication_plan": {
+    "daily_standup": {
+      "time": "每天 9:00-9:15",
+      "participants": "All Core Team",
+      "format": "同步或异步",
+      "agenda": ["昨天完成了什么？", "今天计划做什么？", "遇到什么阻塞？"]
+    },
+    "weekly_meeting": {
+      "time": "每周一 14:00-15:00",
+      "participants": "All Team",
+      "format": "线上会议",
+      "agenda": [
+        "上周进度回顾（10分钟）",
+        "本周计划介绍（10分钟）",
+        "风险和问题讨论（20分钟）",
+        "决策和行动项（15分钟）",
+        "Q&A（5分钟）"
+      ]
+    },
+    "milestone_review": {
+      "time": "每个里程碑结束时",
+      "participants": "All Team + Stakeholders",
+      "format": "线上会议（2小时）",
+      "agenda": ["里程碑目标达成情况", "交付物演示和验收", "经验教训总结", "下一里程碑计划"]
+    },
+    "kickoff_meeting": {
+      "time": "2025-10-02 10:00-12:00",
+      "participants": "All Team",
+      "format": "线上会议",
+      "agenda": [
+        "项目背景和目标（15分钟）",
+        "里程碑和任务介绍（30分钟）",
+        "团队分工和协作（20分钟）",
+        "工具和流程说明（20分钟）",
+        "Q&A和讨论（35分钟）"
+      ]
+    }
+  },
+  "success_metrics": {
+    "m1_1": {
+      "交接成功率": "≥ 80%",
+      "代码覆盖率": "≥ 70%",
+      "Lint错误": "0 error",
+      "Git hooks": "工作正常",
+      "质量文档": "完整"
+    },
+    "m1_2": {
+      "交接成功率": "≥ 90%",
+      "代码覆盖率": "≥ 80%",
+      "E2E测试通过率": "100%",
+      "文档完整度": "≥ 90%",
+      "性能指标": "达标"
+    },
+    "m1_3": {
+      "MVP验收": "100%达成",
+      "真实案例": "完整可运行",
+      "用户满意度": "≥ 4.0/5",
+      "P0/P1问题": "0个",
+      "发布文档": "齐全"
+    }
+  },
+  "references": {
+    "from_po": [
+      {
+        "name": "PRD v2",
+        "path": "docs/PRD_v2.md",
+        "description": "产品需求文档"
+      },
+      {
+        "name": "产品路线图",
+        "path": "docs/PRODUCT_ROADMAP.md",
+        "description": "三阶段规划"
+      },
+      {
+        "name": "产品KPI",
+        "path": "docs/PRODUCT_KPI.md",
+        "description": "成功指标"
+      },
+      {
+        "name": "PO交接JSON",
+        "path": ".cursor/handovers/po_to_pm_2025-10-01.json",
+        "description": "PO到PM的交接"
+      }
+    ],
+    "from_pm": [
+      {
+        "name": "MVP项目计划",
+        "path": "docs/MVP_PROJECT_PLAN.md",
+        "description": "完整的4周冲刺计划"
+      },
+      {
+        "name": "任务分解摘要",
+        "path": "docs/TASKS_SUMMARY.md",
+        "description": "26个任务概览"
+      }
+    ]
+  },
+  "ba_focus_areas": {
+    "primary": [
+      "将26个任务转化为详细的任务说明",
+      "明确每个任务的验收标准和检查清单",
+      "创建和维护任务看板系统",
+      "准备Kick-off会议材料"
+    ],
+    "secondary": ["需求澄清和问题解答", "任务依赖关系管理", "进度跟踪和报告", "团队协作支持"]
+  },
+  "important_notes": [
+    "⚠️ Week1-2是关键期，需要完成FR-003和FR-004两个低完成度模块",
+    "⚠️ T001 Schema设计是关键路径起点，Arch需要在Day3前完成并评审通过",
+    "⚠️ 代码覆盖率目标逐步提升（70% → 80%），避免一开始压力过大",
+    "⚠️ 每日站会必须准时参加，及时同步进度和阻塞点",
+    "⚠️ Kick-off会议是项目启动的关键，BA需要准备充分的材料"
+  ],
+  "questions_for_ba": [
+    "1. 任务说明文档的详细程度如何把握？需要多详细？",
+    "2. 验收标准是否需要转化为自动化测试用例？",
+    "3. 任务看板使用什么工具？Jira/Trello/GitHub Projects？",
+    "4. Kick-off会议需要准备哪些演示材料？",
+    "5. 任务依赖关系是否需要可视化工具？"
+  ],
+  "metadata": {
+    "handover_version": "1.0",
+    "schema_version": "0.7",
+    "created_by": "PM",
+    "reviewed_by": null,
+    "approved_by": null,
+    "confidence_level": "高",
+    "completeness": "95%",
+    "quality_score": "A",
+    "estimated_ba_effort": "4人天",
+    "tags": ["mvp", "sprint", "task-breakdown", "m1.1", "project-management"]
+  }
+}

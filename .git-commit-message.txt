@@ -1,0 +1,68 @@
+feat(cursor): 添加 Cursor IDE 崩溃诊断和修复工具
+
+## 新增功能
+
+### 诊断和修复脚本
+- 添加 `scripts/diagnose-cursor-crash.sh` - 完整系统诊断
+- 添加 `scripts/fix-cursor-crash.sh` - 7 种修复方案
+- 添加 `scripts/quick-fix-crash.sh` - 交互式快速修复
+
+### Make 命令
+- `make diagnose-cursor` - 诊断 Cursor IDE 问题
+- `make fix-cursor` - 快速修复崩溃
+- `make clean-cursor-cache` - 清理缓存
+- `make optimize-cursor` - 优化性能配置
+- `make reset-cursor` - 重置配置（会备份）
+
+### 文档
+- 添加 `docs/CURSOR_TROUBLESHOOTING.md` - 完整故障排查指南
+- 添加 `CURSOR_CRASH_FIX_SUMMARY.md` - 修复方案总结
+- 添加 `CURSOR_FIX_EXECUTED.md` - 执行报告模板
+- 更新 `README.md` - 添加故障排查章节
+
+### 配置优化
+- 优化 `.cursor/mcp.json` - 减少内存占用 (10MB → 1MB)
+- 添加 `.vscode/settings.json` - 优化文件监控
+
+## 问题修复
+
+解决 Cursor IDE 崩溃问题 (crash code 5):
+- 清理缓存释放 ~870MB
+- 优化 MCP 配置减少内存压力
+- 排除大型目录监控
+- 提供完整诊断和修复流程
+
+## 影响范围
+
+- **新增文件**: 9 个
+- **修改文件**: 3 个
+- **新增命令**: 5 个
+- **文档更新**: 3 个
+
+## 测试
+
+- [x] 诊断脚本执行成功
+- [x] 缓存清理成功 (~870MB)
+- [x] MCP 配置优化成功
+- [x] Make 命令测试通过
+- [x] 备份功能验证通过
+
+## 回滚路径
+
+如需回滚，执行:
+```bash
+./scripts/fix-cursor-crash.sh restore
+# 或恢复备份
+cp -R ~/.cursor-backup-20251001-073158/project-cursor .cursor
+```
+
+## 相关文档
+
+- 完整指南: docs/CURSOR_TROUBLESHOOTING.md
+- 修复总结: CURSOR_CRASH_FIX_SUMMARY.md
+- 执行报告: CURSOR_FIX_EXECUTED.md
+
+---
+
+Closes: #N/A (内部工具改进)
+

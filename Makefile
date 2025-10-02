@@ -386,6 +386,81 @@ info: ## 显示项目信息
 	@echo "$(YELLOW)目录结构:$(NC)"
 	@tree -I 'node_modules|.git|.DS_Store' -L 2
 
+# Agent 相关命令
+.PHONY: setup-agent
+setup-agent: ## 配置 Cursor Agent 环境
+	@echo "$(BLUE)配置 Cursor Agent 环境...$(NC)"
+	@./scripts/setup-agent.sh
+
+.PHONY: init-new-project
+init-new-project: ## 基于模板初始化新项目
+	@echo "$(BLUE)基于模板初始化新项目...$(NC)"
+	@./scripts/create-project.sh
+
+# 智能化 Agent 系统
+.PHONY: intelligent-agent
+intelligent-agent: ## 启动智能化 Agent 系统
+	@echo "$(PURPLE)启动智能化 Agent 系统...$(NC)"
+	@node scripts/intelligent-agent.js
+
+.PHONY: smart-generate
+smart-generate: ## 启动智能项目生成器
+	@echo "$(PURPLE)启动智能项目生成器...$(NC)"
+	@node scripts/smart-project-generator.js
+
+.PHONY: github-advisor
+github-advisor: ## 启动 GitHub 集成顾问
+	@echo "$(PURPLE)启动 GitHub 集成顾问...$(NC)"
+	@node scripts/github-integration-advisor.js
+
+.PHONY: agent-manager
+agent-manager: ## 启动 Agent 管理器
+	@echo "$(PURPLE)启动 Agent 管理器...$(NC)"
+	@node scripts/agent-manager.js
+
+.PHONY: agent-workflow
+agent-workflow: ## 启动 Agent 工作流引擎
+	@echo "$(PURPLE)启动 Agent 工作流引擎...$(NC)"
+	@node scripts/agent-workflow.js
+
+# 一键智能开发
+.PHONY: smart-dev
+smart-dev: ## 🚀 启动智能开发模式
+	@echo "$(CYAN)🚀 启动智能开发模式...$(NC)"
+	@echo "$(YELLOW)💡 优先使用现有GitHub项目，避免重复造轮子$(NC)"
+	@echo "1. 智能项目分析"
+	@node scripts/intelligent-agent.js
+	@echo "2. GitHub 集成推荐"  
+	@node scripts/github-integration-advisor.js
+	@echo "3. 智能项目生成"
+	@node scripts/smart-project-generator.js
+
+# Cursor IDE 故障排查
+.PHONY: diagnose-cursor
+diagnose-cursor: ## 🔍 诊断 Cursor IDE 崩溃问题
+	@echo "$(PURPLE)🔍 诊断 Cursor IDE 问题...$(NC)"
+	@./scripts/diagnose-cursor-crash.sh
+
+.PHONY: fix-cursor
+fix-cursor: ## 🔧 快速修复 Cursor IDE 崩溃
+	@echo "$(PURPLE)🔧 修复 Cursor IDE...$(NC)"
+	@./scripts/quick-fix-crash.sh
+
+.PHONY: clean-cursor-cache
+clean-cursor-cache: ## 🧹 清理 Cursor 缓存
+	@echo "$(PURPLE)🧹 清理 Cursor 缓存...$(NC)"
+	@./scripts/fix-cursor-crash.sh clean-cache
+
+.PHONY: reset-cursor
+reset-cursor: ## ⚠️  重置 Cursor 配置（会备份）
+	@echo "$(RED)⚠️  重置 Cursor 配置...$(NC)"
+	@./scripts/fix-cursor-crash.sh reset-config
+
+.PHONY: optimize-cursor
+optimize-cursor: ## ⚡ 优化 Cursor 性能配置
+	@echo "$(PURPLE)⚡ 优化 Cursor 配置...$(NC)"
+	@./scripts/fix-cursor-crash.sh reduce-features
+
 # 显示帮助
 .PHONY: commands
 commands: ## 显示所有可用命令

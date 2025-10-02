@@ -1,64 +1,20 @@
 {
-  "mcpServers": {
-    "cursor-docs": {
-      "type": "http",
-      "url": "https://cursor.com/docs",
-      "headers": {}
-    },
-    "cursor-changelog": {
-      "type": "http",
-      "url": "https://cursor.com/changelog",
-      "headers": {}
-    },
-    "awesome-cursorrules": {
-      "type": "http",
-      "url": "https://github.com/PatrickJS/awesome-cursorrules",
-      "headers": {}
-    },
-    "memory-manager": {
-      "type": "local",
-      "command": "node",
-      "args": ["scripts/memory-manager.js"],
-      "description": "Agent 记忆管理服务"
-    },
-    "task-planner": {
-      "type": "local",
-      "command": "node",
-      "args": ["scripts/task-planner.js"],
-      "description": "任务规划和分解服务"
-    },
-    "code-analyzer": {
-      "type": "local",
-      "command": "node",
-      "args": ["scripts/code-analyzer.js"],
-      "description": "代码分析和质量检查服务"
-    },
-    "github-integration": {
-      "type": "local",
-      "command": "node",
-      "args": ["scripts/github-integration.js"],
-      "description": "GitHub PR 索引和搜索服务"
-    }
-  },
+  "mcpServers": {},
   "features": {
     "agentMemory": {
       "enabled": true,
       "memoryFile": ".cursor/memories.json",
-      "maxMemorySize": "10MB"
+      "maxMemorySize": "1MB"
     },
     "taskPlanning": {
-      "enabled": true,
-      "maxTaskDepth": 5,
-      "autoBreakdown": true
+      "enabled": false
     },
     "prIndexing": {
-      "enabled": true,
-      "indexOnPush": true,
-      "searchEnabled": true
+      "enabled": false
     },
     "conflictResolution": {
       "enabled": true,
-      "autoSuggest": true
+      "autoSuggest": false
     }
   }
 }
