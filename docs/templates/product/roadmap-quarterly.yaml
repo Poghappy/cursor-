@@ -1,0 +1,88 @@
+# 季度产品路线图模板
+# 用于生成标准化的季度产品规划
+
+metadata:
+  version: '1.0'
+  template_type: 'quarterly'
+  description: '标准季度产品路线图模板'
+  author: 'Product Manager Agent'
+  created_at: '2025-01-02'
+
+# 默认分类和里程碑
+default_categories:
+  - name: '核心功能'
+    priority: 'high'
+    color: '#FF6B6B'
+  - name: '用户体验'
+    priority: 'medium'
+    color: '#4ECDC4'
+  - name: '性能优化'
+    priority: 'medium'
+    color: '#45B7D1'
+  - name: '技术债务'
+    priority: 'low'
+    color: '#96CEB4'
+
+# 默认里程碑
+milestones:
+  - name: 'MVP 发布'
+    quarter: 'Q1'
+    description: '最小可行产品发布'
+  - name: '功能完善'
+    quarter: 'Q2'
+    description: '核心功能完善和优化'
+  - name: '用户体验提升'
+    quarter: 'Q3'
+    description: '界面和交互优化'
+  - name: '规模化准备'
+    quarter: 'Q4'
+    description: '性能和扩展性优化'
+
+# 默认干系人
+stakeholders:
+  - name: '产品经理'
+    role: '决策者'
+    influence: '高'
+    contact: 'pm@company.com'
+  - name: '开发团队'
+    role: '执行者'
+    influence: '中'
+    contact: 'dev@company.com'
+  - name: '设计团队'
+    role: '支持者'
+    influence: '中'
+    contact: 'design@company.com'
+  - name: '用户'
+    role: '受益者'
+    influence: '高'
+    contact: 'feedback@company.com'
+  - name: '业务方'
+    role: '需求方'
+    influence: '中'
+    contact: 'business@company.com'
+
+# 风险评估模板
+risk_categories:
+  - name: '技术风险'
+    description: '技术实现难度和可行性'
+  - name: '市场风险'
+    description: '市场需求和竞争环境'
+  - name: '资源风险'
+    description: '人力、时间、预算限制'
+  - name: '依赖风险'
+    description: '外部依赖和第三方服务'
+
+# 成功指标模板
+success_metrics:
+  - name: '用户增长'
+    type: 'quantitative'
+    target: '20%'
+  - name: '用户满意度'
+    type: 'qualitative'
+    target: '4.5/5'
+  - name: '功能完成度'
+    type: 'quantitative'
+    target: '90%'
+  - name: '性能指标'
+    type: 'quantitative'
+    target: '响应时间 < 2s'

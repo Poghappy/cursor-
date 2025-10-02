@@ -810,6 +810,64 @@ project-health: ## 💖 项目健康度检查
 	@echo "$(BLUE)💖 运行项目健康度检查...$(NC)"
 	@node scripts/maintenance/project-health.js
 
+# GitHub 快速工具
+.PHONY: gh-help gh-issue gh-pr gh-sync gh-report gh-workflow gh-status
+gh-help: ## 🚀 GitHub 工具帮助
+	@echo "$(BLUE)🚀 GitHub 快速工具帮助$(NC)"
+	@node scripts/github-quick/gh-agent.js
+
+gh-issue: ## 📝 创建 GitHub Issue
+	@echo "$(BLUE)📝 创建 GitHub Issue...$(NC)"
+	@node scripts/github-quick/gh-agent.js issue "$(TITLE)" "$(BODY)" $(LABELS)
+
+gh-pr: ## 🔄 创建 GitHub PR
+	@echo "$(BLUE)🔄 创建 GitHub PR...$(NC)"
+	@node scripts/github-quick/gh-agent.js pr "$(TITLE)" "$(BODY)" "$(BASE)" "$(HEAD)"
+
+gh-sync: ## 🔄 同步 GitHub 代码
+	@echo "$(BLUE)🔄 同步 GitHub 代码...$(NC)"
+	@node scripts/github-quick/gh-agent.js sync
+
+gh-report: ## 📊 生成 GitHub 报告
+	@echo "$(BLUE)📊 生成 GitHub 报告...$(NC)"
+	@node scripts/github-quick/gh-agent.js report
+
+gh-workflow: ## ⚡ 触发 GitHub 工作流
+	@echo "$(BLUE)⚡ 触发 GitHub 工作流...$(NC)"
+	@node scripts/github-quick/gh-agent.js workflow "$(WORKFLOW)" $(INPUTS)
+
+gh-status: ## 📊 查看 GitHub 工作流状态
+	@echo "$(BLUE)📊 查看 GitHub 工作流状态...$(NC)"
+	@node scripts/github-quick/gh-agent.js status
+
+gh-branch: ## 🌿 创建 GitHub 分支
+	@echo "$(BLUE)🌿 创建 GitHub 分支...$(NC)"
+	@node scripts/github-quick/gh-agent.js branch "$(BRANCH)" "$(BASE)"
+
+gh-commit: ## 💾 提交并推送代码
+	@echo "$(BLUE)💾 提交并推送代码...$(NC)"
+	@node scripts/github-quick/gh-agent.js commit "$(MESSAGE)" $(FILES)
+
+# GitHub 集成工作流
+.PHONY: workflow-github workflow-github-full
+workflow-github: ## 🚀 GitHub 集成工作流
+	@echo "$(BLUE)🚀 执行 GitHub 集成工作流...$(NC)"
+	@make gh-sync
+	@make agent-product roadmap --template=quarterly
+	@make gh-issue TITLE="产品路线图更新" BODY="已生成新的季度产品路线图" LABELS="product" "roadmap"
+	@make gh-report
+
+workflow-github-full: ## 🚀 GitHub 完整工作流
+	@echo "$(BLUE)🚀 执行 GitHub 完整工作流...$(NC)"
+	@make gh-sync
+	@make agent-requirements analyze --format=markdown
+	@make agent-product roadmap --template=quarterly
+	@make agent-dev generate --language=typescript
+	@make gh-branch BRANCH="feature/auto-generated" BASE="main"
+	@make gh-commit MESSAGE="🤖 自动生成: 需求分析、产品路线图、开发工具"
+	@make gh-pr TITLE="自动生成的功能更新" BODY="包含需求分析、产品路线图和开发工具生成" BASE="main" HEAD="feature/auto-generated"
+	@make gh-report
+
 # 显示帮助
 .PHONY: commands
 commands: ## 显示所有可用命令

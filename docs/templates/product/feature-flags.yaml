@@ -1,0 +1,86 @@
+- name: new-ui-design
+  description: 新版用户界面设计
+  enabled: false
+  rolloutPercentage: 0
+  targetUsers: []
+  environment: production
+  createdBy: 产品经理
+  createdAt: '2025-01-02T10:00:00Z'
+  updatedAt: '2025-01-02T10:00:00Z'
+  tags:
+    - ui
+    - design
+    - user-experience
+  dependencies: []
+  risks:
+    - 用户可能不适应新界面
+    - 可能存在兼容性问题
+  rollbackPlan: 通过开关快速回退到旧版本
+- name: advanced-search
+  description: 高级搜索功能
+  enabled: true
+  rolloutPercentage: 25
+  targetUsers:
+    - premium-users
+    - beta-testers
+  environment: production
+  createdBy: 产品经理
+  createdAt: '2025-01-02T10:00:00Z'
+  updatedAt: '2025-01-02T10:00:00Z'
+  tags:
+    - search
+    - premium
+    - feature
+  dependencies:
+    - search-service-v2
+  risks:
+    - 可能影响搜索性能
+    - 需要额外的服务器资源
+  rollbackPlan: 关闭功能开关，回退到基础搜索
+- name: payment-integration
+  description: 新支付系统集成
+  enabled: false
+  rolloutPercentage: 0
+  targetUsers: []
+  environment: staging
+  createdBy: 技术负责人
+  createdAt: '2025-01-02T10:00:00Z'
+  updatedAt: '2025-01-02T10:00:00Z'
+  tags:
+    - payment
+    - integration
+    - critical
+  dependencies:
+    - payment-service-v3
+    - security-audit
+  risks:
+    - 支付流程中断风险
+    - 数据安全风险
+  rollbackPlan: 立即切换到备用支付系统
+- name: ai-recommendations
+  description: AI 推荐系统
+  enabled: true
+  rolloutPercentage: 10
+  targetUsers:
+    - ai-beta-users
+  environment: production
+  createdBy: AI 团队
+  createdAt: '2025-01-02T10:00:00Z'
+  updatedAt: '2025-01-02T10:00:00Z'
+  tags:
+    - ai
+    - recommendation
+    - machine-learning
+  dependencies:
+    - ml-service
+    - user-behavior-tracking
+  risks:
+    - 推荐准确性可能不够
+    - 计算资源消耗较大
+  rollbackPlan: 回退到基于规则的推荐系统
+- name: ai-code-generation
+  description: AI 驱动的代码生成功能
+  enabled: true
+  rolloutPercentage: 20
+  targetUsers: []
+  createdAt: '2025-10-02T11:33:46.416Z'

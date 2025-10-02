@@ -1,0 +1,199 @@
+name: Cursor Agent Automation
+
+on:
+    workflow_dispatch:
+        inputs:
+            agent_type:
+                description: "Agent 类型"
+                required: true
+                default: "product-manager"
+                type: choice
+                options:
+                    - product-manager
+                    - requirement-analyzer
+                    - developer-tools
+                    - test-manager
+                    - github-integration
+            action:
+                description: "执行动作"
+                required: true
+                default: "help"
+                type: string
+            options:
+                description: "选项参数"
+                required: false
+                type: string
+            output_format:
+                description: "输出格式"
+                required: false
+                default: "yaml"
+                type: choice
+                options:
+                    - yaml
+                    - json
+                    - markdown
+    push:
+        branches: [main, develop]
+        paths:
+            - "scripts/agent/**"
+            - "docs/templates/**"
+            - ".github/workflows/agent-automation.yml"
+    pull_request:
+        branches: [main]
+        paths:
+            - "scripts/agent/**"
+            - "docs/templates/**"
+
+jobs:
+    agent-execution:
+        runs-on: ubuntu-latest
+        if: github.event_name == 'workflow_dispatch'
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "18"
+                  cache: "npm"
+
+            - name: Install dependencies
+              run: |
+                  npm install
+                  npm install -g js-yaml
+
+            - name: Create output directory
+              run: mkdir -p tmp/generated
+
+            - name: Execute Agent
+              run: |
+                  echo "🤖 执行 Agent: ${{ github.event.inputs.agent_type }} ${{ github.event.inputs.action }}"
+                  node scripts/agent/roles/${{ github.event.inputs.agent_type }}.js \
+                    ${{ github.event.inputs.action }} \
+                    ${{ github.event.inputs.options }}
+
+            - name: Upload results
+              uses: actions/upload-artifact@v4
+              with:
+                  name: agent-results-${{ github.event.inputs.agent_type }}-${{ github.run_number }}
+                  path: tmp/generated/
+                  retention-days: 30
+
+            - name: Comment on PR (if applicable)
+              if: github.event_name == 'pull_request'
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      const fs = require('fs');
+                      const path = require('path');
+
+                      // 读取生成的结果文件
+                      const resultsDir = 'tmp/generated';
+                      if (fs.existsSync(resultsDir)) {
+                        const files = fs.readdirSync(resultsDir);
+                        let comment = '## 🤖 Agent 执行结果\n\n';
+                        
+                        files.forEach(file => {
+                          const filePath = path.join(resultsDir, file);
+                          const content = fs.readFileSync(filePath, 'utf8');
+                          comment += `### ${file}\n\`\`\`yaml\n${content}\n\`\`\`\n\n`;
+                        });
+                        
+                        github.rest.issues.createComment({
+                          issue_number: context.issue.number,
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          body: comment
+                        });
+                      }
+
+    code-quality-check:
+        runs-on: ubuntu-latest
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "18"
+                  cache: "npm"
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Run linting
+              run: |
+                  echo "🔍 运行代码检查..."
+                  find scripts/agent -name "*.js" -exec node -c {} \;
+
+            - name: Check file output errors
+              run: |
+                  echo "🔧 检查文件输出错误..."
+                  node scripts/maintenance/file-output-validator-clean.js
+
+            - name: Run tests (if available)
+              run: |
+                  if [ -f "package.json" ] && grep -q '"test"' package.json; then
+                    echo "🧪 运行测试..."
+                    npm test
+                  else
+                    echo "⚠️ 未找到测试配置，跳过测试"
+                  fi
+
+    auto-commit:
+        runs-on: ubuntu-latest
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.agent_type == 'product-manager'
+        needs: agent-execution
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Download artifacts
+              uses: actions/download-artifact@v4
+              with:
+                  name: agent-results-${{ github.event.inputs.agent_type }}-${{ github.run_number }}
+                  path: tmp/generated/
+
+            - name: Configure Git
+              run: |
+                  git config --local user.email "action@github.com"
+                  git config --local user.name "GitHub Action"
+
+            - name: Commit generated files
+              run: |
+                  if [ -d "tmp/generated" ] && [ "$(ls -A tmp/generated)" ]; then
+                    git add tmp/generated/
+                    git commit -m "🤖 Auto-generated: ${{ github.event.inputs.agent_type }} ${{ github.event.inputs.action }} [skip ci]"
+                    git push
+                    echo "✅ 生成的文件已自动提交"
+                  else
+                    echo "⚠️ 没有生成的文件需要提交"
+                  fi
+
+    notification:
+        runs-on: ubuntu-latest
+        if: always()
+        needs: [agent-execution, code-quality-check]
+
+        steps:
+            - name: Notify completion
+              run: |
+                  if [ "${{ needs.agent-execution.result }}" == "success" ]; then
+                    echo "✅ Agent 执行成功"
+                  else
+                    echo "❌ Agent 执行失败"
+                  fi
+
+                  if [ "${{ needs.code-quality-check.result }}" == "success" ]; then
+                    echo "✅ 代码质量检查通过"
+                  else
+                    echo "❌ 代码质量检查失败"
+                  fi

@@ -1,0 +1,70 @@
+- id: US-001
+  title: 用户登录功能
+  description: 作为用户，我希望能够使用邮箱和密码登录系统，以便访问我的个人账户
+  acceptanceCriteria:
+    - 用户输入正确的邮箱和密码后能够成功登录
+    - 用户输入错误的密码时显示错误提示
+    - 用户忘记密码时能够通过邮箱重置
+    - 登录成功后跳转到用户首页
+    - 支持记住登录状态功能
+  priority: high
+  storyPoints: 8
+  status: draft
+  assignee: 开发团队
+  epic: 用户认证
+  tags:
+    - authentication
+    - security
+    - user-experience
+  createdAt: '2025-01-02T10:00:00Z'
+  updatedAt: '2025-01-02T10:00:00Z'
+- id: US-002
+  title: 产品搜索功能
+  description: 作为用户，我希望能够搜索产品，以便快速找到我需要的商品
+  acceptanceCriteria:
+    - 用户输入关键词后能够搜索相关产品
+    - 搜索结果按相关性排序
+    - 支持模糊搜索和拼写纠错
+    - 显示搜索结果数量和分页
+    - 支持按价格、评分等条件筛选
+  priority: high
+  storyPoints: 13
+  status: draft
+  assignee: 开发团队
+  epic: 产品浏览
+  tags:
+    - search
+    - user-experience
+    - performance
+  createdAt: '2025-01-02T10:00:00Z'
+  updatedAt: '2025-01-02T10:00:00Z'
+- id: US-003
+  title: 购物车管理
+  description: 作为用户，我希望能够管理购物车中的商品，以便灵活调整购买计划
+  acceptanceCriteria:
+    - 用户能够添加商品到购物车
+    - 用户能够修改商品数量
+    - 用户能够删除购物车中的商品
+    - 购物车显示商品总价和数量
+    - 购物车状态在用户会话中保持
+  priority: medium
+  storyPoints: 5
+  status: draft
+  assignee: 开发团队
+  epic: 购物流程
+  tags:
+    - shopping-cart
+    - user-experience
+  createdAt: '2025-01-02T10:00:00Z'
+  updatedAt: '2025-01-02T10:00:00Z'
+- id: US-1759404823145
+  title: 智能代码生成
+  description: 作为开发工程师，我希望能够自动生成代码，以便提高开发效率
+  acceptanceCriteria:
+    - 支持多种编程语言
+    - 生成代码质量高
+    - 集成到IDE中
+  priority: high
+  storyPoints: 13
+  status: draft
+  createdAt: '2025-10-02T11:33:43.145Z'
