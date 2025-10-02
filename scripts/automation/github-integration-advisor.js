@@ -852,7 +852,7 @@ class GitHubIntegrationAdvisor {
       report += `### ${index + 1}. ${action.action}\n`;
       report += `**描述**: ${action.description}\n`;
       report += `**预计时间**: ${action.timeEstimate}\n`;
-      report += `**安装命令**: \`${action.command}\`\n`;
+      report += `**安装命令**: `${action.command}`\n`;
       report += `**推荐理由**:\n`;
       action.reasoning.forEach(reason => {
         report += `- ${reason}\n`;
@@ -917,7 +917,7 @@ class GitHubIntegrationAdvisor {
           .forEach((action, index) => {
             response += `${index + 1}. **${action.action}** - ${action.description}\n`;
             response += `   ⏱️ 预计时间: ${action.timeEstimate}\n`;
-            response += `   📦 安装: \`${action.command}\`\n\n`;
+            response += `   📦 安装: `${action.command}`\n\n`;
           });
       }
 

@@ -465,7 +465,7 @@ class LogAnalyzer {
       `log-analysis-${new Date().toISOString().split('T')[0]}.md`
     );
 
-    let report = `# 日志分析报告
+    let report = `# 日志分析报告`
 
 **生成时间**: ${new Date().toLocaleString()}
 **分析时间范围**: ${analysis.summary.timeRange.start ? analysis.summary.timeRange.start.toLocaleString() : 'N/A'} - ${analysis.summary.timeRange.end ? analysis.summary.timeRange.end.toLocaleString() : 'N/A'}
@@ -492,7 +492,7 @@ class LogAnalyzer {
 
     // Top 错误
     if (analysis.summary.topErrors.length > 0) {
-      report += `\n## 🔥 高频错误 (Top 10)
+      report += `\n## 🔥 高频错误 (Top 10)`
 
 | 错误信息 | 出现次数 | 涉及文件 |
 |----------|----------|----------|
@@ -506,7 +506,7 @@ class LogAnalyzer {
 
     // HTTP 状态码分布
     if (analysis.summary.statusCodeDistribution.size > 0) {
-      report += `\n## 📈 HTTP 状态码分布
+      report += `\n## 📈 HTTP 状态码分布`
 
 | 状态码 | 次数 | 占比 |
 |--------|------|------|
@@ -524,7 +524,7 @@ class LogAnalyzer {
 
     // 性能统计
     if (analysis.summary.performanceStats.count > 0) {
-      report += `\n## ⚡ 性能统计
+      report += `\n## ⚡ 性能统计`
 
 | 指标 | 值 |
 |------|-----|
@@ -537,7 +537,7 @@ class LogAnalyzer {
 
     // Top IP 地址
     if (analysis.summary.topIPs.length > 0) {
-      report += `\n## 🌐 访问频次最高的 IP (Top 10)
+      report += `\n## 🌐 访问频次最高的 IP (Top 10)`
 
 | IP 地址 | 访问次数 |
 |---------|----------|
@@ -549,7 +549,7 @@ class LogAnalyzer {
     }
 
     // 建议
-    report += `\n## 💡 分析建议
+    report += `\n## 💡 分析建议`
 
 ### 错误处理
 `;
@@ -606,7 +606,7 @@ class LogAnalyzer {
       report += `- 📊 HTTP 错误请求共 ${totalErrors} 次，建议分析错误原因\n`;
     }
 
-    report += `
+    report += ``
 ## 📋 操作建议
 
 1. **定期监控**: 建议每日运行日志分析，及时发现问题

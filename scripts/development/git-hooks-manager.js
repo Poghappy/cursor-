@@ -211,7 +211,7 @@ class GitHooksManager {
       return;
     }
 
-    const config = `module.exports = {
+    const config = `module.exports = {`
   '*.{js,jsx,ts,tsx}': [
     'eslint --fix',
     'prettier --write',
@@ -226,7 +226,7 @@ class GitHooksManager {
     'git add'
   ]
 };
-`;
+`;`
 
     fs.writeFileSync(configFile, config);
     console.log('  创建 .lintstagedrc.js 配置文件');
@@ -241,7 +241,7 @@ class GitHooksManager {
       return;
     }
 
-    const config = `module.exports = {
+    const config = `module.exports = {`
   extends: ['@commitlint/config-conventional'],
   rules: {
     'type-enum': [
@@ -270,7 +270,7 @@ class GitHooksManager {
     'header-max-length': [2, 'always', 72]
   }
 };
-`;
+`;`
 
     fs.writeFileSync(configFile, config);
     console.log('  创建 commitlint.config.js 配置文件');

@@ -75,7 +75,7 @@ setup-agent: ## 配置 Cursor Agent 环境
 	@echo "$(GREEN)Agent 环境配置完成$(NC)"
 
 ## 📁 文件管理
-.PHONY: check-files clean-temp check-duplicates promote-file find-similar fix-files
+.PHONY: check-files clean-temp check-duplicates promote-file find-similar fix-files check-file-output validate-syntax fix-syntax-errors
 check-files: ## 检查文件规范和健康度
 	@echo "$(BLUE)🔍 检查文件规范...$(NC)"
 	@node scripts/maintenance/file-manager.js check
@@ -101,6 +101,31 @@ fix-files: ## 自动修复文件问题
 	@make check-files
 	@make clean-temp
 	@echo "$(GREEN)✅ 文件问题修复完成$(NC)"
+
+check-file-output: ## 检查文件输出错误
+	@echo "$(BLUE)🔍 检查文件输出错误...$(NC)"
+	@node scripts/maintenance/file-output-validator-clean.js
+
+validate-syntax: ## 验证所有文件语法
+	@echo "$(BLUE)🔍 验证文件语法...$(NC)"
+	@echo "验证 JavaScript 文件..."
+	@find scripts/ -name "*.js" -exec node -c {} \; && echo "✅ JavaScript 语法验证通过" || echo "❌ JavaScript 语法验证失败"
+	@echo "验证 TypeScript 文件..."
+	@if command -v tsc >/dev/null 2>&1; then \
+		tsc --noEmit --skipLibCheck && echo "✅ TypeScript 语法验证通过" || echo "❌ TypeScript 语法验证失败"; \
+	else \
+		echo "⚠️ TypeScript 编译器未安装，跳过 TS 验证"; \
+	fi
+	@echo "$(GREEN)✅ 语法验证完成$(NC)"
+
+fix-syntax-errors: ## 修复常见语法错误
+	@echo "$(BLUE)🔧 修复语法错误...$(NC)"
+	@node scripts/maintenance/file-output-validator.js --auto-fix --verbose
+
+fix-file-output: ## 自动修复文件输出错误
+	@echo "$(BLUE)🔧 自动修复文件输出错误...$(NC)"
+	@node scripts/maintenance/file-output-validator-clean.js --auto-fix
+	@echo "$(GREEN)✅ 文件输出错误修复完成$(NC)"
 
 # 环境设置
 .PHONY: setup setup-git-hooks setup-env
@@ -557,23 +582,74 @@ cursor-stats: ## 📊 显示 .cursor 统计信息
 
 # Agent 角色专用工具
 .PHONY: product-manager requirement-analyzer architecture-designer developer-tools test-manager operations-tools doc-generator llm-engineer project-coordinator
+.PHONY: product-roadmap user-stories feature-flags requirements-analyze process-model use-cases test-generate quality-gate code-generate api-client migrate review-code
 
 # 产品管理工具
 product-manager: ## 📋 启动产品管理工具
 	@echo "$(BLUE)📋 启动产品管理工具...$(NC)"
-	@node scripts/agent/roles/product-manager.js
 
-product-roadmap: ## 📈 生成产品路线图
-	@echo "$(BLUE)📈 生成产品路线图...$(NC)"
+product-roadmap: ## 📋 生成产品路线图
+	@echo "$(BLUE)📋 生成产品路线图...$(NC)"
 	@node scripts/agent/roles/product-manager.js roadmap --template=quarterly
+	@echo "$(GREEN)✅ 产品路线图生成完成$(NC)"
 
 user-stories: ## 📝 管理用户故事
 	@echo "$(BLUE)📝 管理用户故事...$(NC)"
-	@node scripts/agent/roles/product-manager.js user-story --generate --validate
+	@node scripts/agent/roles/product-manager.js user-story --action=list
+	@echo "$(GREEN)✅ 用户故事管理完成$(NC)"
 
 feature-flags: ## 🚩 管理功能开关
 	@echo "$(BLUE)🚩 管理功能开关...$(NC)"
-	@node scripts/agent/roles/product-manager.js feature-flag --list --status
+	@node scripts/agent/roles/product-manager.js feature-flag --operation=list
+	@echo "$(GREEN)✅ 功能开关管理完成$(NC)"
+
+# 需求分析工具
+requirements-analyze: ## 📊 分析需求文档
+	@echo "$(BLUE)📊 分析需求文档...$(NC)"
+	@node scripts/agent/roles/requirement-analyzer.js analyze --input=docs/product/requirements/PRD_v2.md
+	@echo "$(GREEN)✅ 需求分析完成$(NC)"
+
+process-model: ## 🔄 业务流程建模
+	@echo "$(BLUE)🔄 业务流程建模...$(NC)"
+	@node scripts/agent/roles/requirement-analyzer.js model --process=user-registration
+	@echo "$(GREEN)✅ 流程建模完成$(NC)"
+
+use-cases: ## 📋 生成用例
+	@echo "$(BLUE)📋 生成用例...$(NC)"
+	@node scripts/agent/roles/requirement-analyzer.js use-cases --template=standard
+	@echo "$(GREEN)✅ 用例生成完成$(NC)"
+
+# 测试管理工具
+test-generate: ## 🧪 生成测试用例
+	@echo "$(BLUE)🧪 生成测试用例...$(NC)"
+	@node scripts/agent/roles/test-manager.js generate --type=unit --framework=jest
+	@echo "$(GREEN)✅ 测试用例生成完成$(NC)"
+
+quality-gate: ## 🚪 质量门禁检查
+	@echo "$(BLUE)🚪 质量门禁检查...$(NC)"
+	@node scripts/agent/roles/test-manager.js quality-gates --coverage=80
+	@echo "$(GREEN)✅ 质量门禁检查完成$(NC)"
+
+# 开发工具
+code-generate: ## 💻 生成代码
+	@echo "$(BLUE)💻 生成代码...$(NC)"
+	@node scripts/agent/roles/developer-tools.js generate --type=service --name=User --template=crud
+	@echo "$(GREEN)✅ 代码生成完成$(NC)"
+
+api-client: ## 🔗 生成 API 客户端
+	@echo "$(BLUE)🔗 生成 API 客户端...$(NC)"
+	@node scripts/agent/roles/developer-tools.js api-client --spec=docs/api/openapi.json --language=typescript
+	@echo "$(GREEN)✅ API 客户端生成完成$(NC)"
+
+migrate: ## 🗄️ 数据库迁移
+	@echo "$(BLUE)🗄️ 数据库迁移...$(NC)"
+	@node scripts/agent/roles/developer-tools.js migrate --operation=create --name=add-user-table
+	@echo "$(GREEN)✅ 数据库迁移完成$(NC)"
+
+review-code: ## 🔍 代码审查
+	@echo "$(BLUE)🔍 代码审查...$(NC)"
+	@node scripts/agent/roles/developer-tools.js review --path=src --format=json
+	@echo "$(GREEN)✅ 代码审查完成$(NC)"
 
 # 需求分析工具
 requirement-analyzer: ## 📊 启动需求分析工具

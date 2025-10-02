@@ -442,7 +442,7 @@ class FileManager {
                 break;
                 
             default:
-                console.log(`
+                console.log(``
 文件管理工具 - 使用说明
 
 命令:
@@ -457,7 +457,7 @@ class FileManager {
   node file-manager.js clean
   node file-manager.js promote tmp/drafts/my_doc.md docs/technical/
   node file-manager.js similar docs/product/PRD_v1.md
-                `);
+                `);`
         }
     }
 }

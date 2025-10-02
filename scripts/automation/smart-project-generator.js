@@ -836,7 +836,7 @@ class SmartProjectGenerator {
 
   // Web应用.gitignore
   getWebAppGitignore() {
-    return `# Dependencies
+    return `# Dependencies`
 node_modules/
 npm-debug.log*
 yarn-debug.log*
@@ -890,10 +890,10 @@ coverage/
 
     readme += `## 🚀 快速开始\n\n`;
     readme += `### 安装依赖\n`;
-    readme += `\`\`\`bash\nnpm install\n\`\`\`\n\n`;
+    readme += ````bash\nnpm install\n```\n\n`;
 
     readme += `### 启动开发服务器\n`;
-    readme += `\`\`\`bash\nnpm run dev\n\`\`\`\n\n`;
+    readme += ````bash\nnpm run dev\n```\n\n`;
 
     readme += `## 📦 集成的技术栈\n\n`;
     generation.integrations.forEach(integration => {
@@ -916,18 +916,18 @@ coverage/
     let guide = `# 开发指南\n\n`;
 
     guide += `## 项目结构\n\n`;
-    guide += `\`\`\`\n`;
+    guide += ````\n`;
     guide += this.generateProjectStructureTree(
       generation.analysis.template.structure
     );
-    guide += `\`\`\`\n\n`;
+    guide += ````\n\n`;
 
     guide += `## 集成说明\n\n`;
     generation.integrations.forEach(integration => {
       if (integration.status === 'installed') {
         guide += `### ${integration.recommendation.action}\n\n`;
         guide += `${integration.recommendation.description}\n\n`;
-        guide += `**安装命令**: \`${integration.recommendation.command}\`\n\n`;
+        guide += `**安装命令**: `${integration.recommendation.command}`\n\n`;
 
         if (integration.recommendation.steps) {
           guide += `**使用步骤**:\n`;

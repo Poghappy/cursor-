@@ -536,7 +536,7 @@ class AgentManager {
 
   // 显示帮助信息
   showHelp() {
-    console.log(`
+    console.log(``
 🤖 Cursor AI Agent Manager 命令:
 
 基础命令:

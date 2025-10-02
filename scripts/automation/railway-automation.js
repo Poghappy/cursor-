@@ -198,7 +198,7 @@ class RailwayAutomation {
     console.log('📄 生成 Railway 配置文件...');
 
     // 生成 railway.toml
-    const railwayToml = `[build]
+    const railwayToml = `[build]`
 command = "${this.railwayConfig.buildCommand}"
 
 [deploy]
@@ -210,7 +210,7 @@ restartPolicyMaxRetries = 3
 enabled = ${this.railwayConfig.healthCheck.enabled}
 path = "${this.railwayConfig.healthCheck.path}"
 timeout = ${this.railwayConfig.healthCheck.timeout}
-`;
+`;`
 
     fs.writeFileSync(path.join(this.projectRoot, 'railway.toml'), railwayToml);
     console.log('✅ 生成 railway.toml');
@@ -235,7 +235,7 @@ timeout = ${this.railwayConfig.healthCheck.timeout}
       fs.readFileSync(path.join(this.projectRoot, 'package.json'), 'utf8')
     );
 
-    const dockerfile = `# Railway Dockerfile
+    const dockerfile = `# Railway Dockerfile`
 FROM node:18-alpine
 
 WORKDIR /app
@@ -261,7 +261,7 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \\
 
 # Start application
 CMD ["npm", "start"]
-`;
+`;`
 
     fs.writeFileSync(dockerfilePath, dockerfile);
     console.log('✅ 生成 Dockerfile');
@@ -271,7 +271,7 @@ CMD ["npm", "start"]
   async generateRailwayIgnore() {
     const ignorePath = path.join(this.projectRoot, '.railwayignore');
     
-    const ignoreContent = `# Railway ignore file
+    const ignoreContent = `# Railway ignore file`
 node_modules/
 npm-debug.log*
 yarn-debug.log*
@@ -294,7 +294,7 @@ Thumbs.db
 *.swp
 *.swo
 *~
-`;
+`;`
 
     fs.writeFileSync(ignorePath, ignoreContent);
     console.log('✅ 生成 .railwayignore');
@@ -538,7 +538,7 @@ Thumbs.db
       let response = '';
 
       if (userInput.includes('部署') || userInput.includes('deploy')) {
-        response = `🚀 我来帮您部署到 Railway！
+        response = `🚀 我来帮您部署到 Railway！`
 
 当前配置:
 - 项目: ${this.railwayConfig.projectName}
@@ -554,7 +554,7 @@ Thumbs.db
 是否现在开始部署？`;
 
       } else if (userInput.includes('配置') || userInput.includes('config')) {
-        response = `⚙️ Railway 配置管理
+        response = `⚙️ Railway 配置管理`
 
 当前配置文件: railway.json
 环境变量: ${Object.keys(this.railwayConfig.environmentVariables).length} 个
@@ -568,7 +568,7 @@ Thumbs.db
 需要修改哪个配置？`;
 
       } else if (userInput.includes('日志') || userInput.includes('logs')) {
-        response = `📋 查看应用日志
+        response = `📋 查看应用日志`
 
 可用选项:
 - 实时日志: railway logs --follow
@@ -578,7 +578,7 @@ Thumbs.db
 输入 "查看日志" 开始查看实时日志。`;
 
       } else {
-        response = `🚂 Railway 部署自动化助手
+        response = `🚂 Railway 部署自动化助手`
 
 我可以帮您:
 - 🚀 一键部署应用到 Railway
@@ -587,7 +587,7 @@ Thumbs.db
 - 🔄 执行回滚操作
 - 🌐 管理自定义域名
 
-请告诉我您需要什么帮助？`;
+请告诉我您需要什么帮助？`;`
       }
 
       return {

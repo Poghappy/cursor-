@@ -59,7 +59,7 @@ class EnvManager {
       return;
     }
 
-    const template = `# 环境变量模板
+    const template = `# 环境变量模板`
 # 复制此文件并重命名为 .env.development, .env.staging, .env.production
 # 然后填入相应的值
 
@@ -100,7 +100,7 @@ SENTRY_DSN=
 # 功能开关
 FEATURE_FLAG_NEW_UI=false
 FEATURE_FLAG_BETA_API=false
-`;
+`;`
 
     fs.writeFileSync(this.templateFile, template);
     console.log('  创建 .env.template');
@@ -501,7 +501,7 @@ FEATURE_FLAG_BETA_API=false
 
     const docsPath = path.join(this.projectRoot, 'docs', 'ENV_CONFIG.md');
     
-    let docs = `# 环境配置文档
+    let docs = `# 环境配置文档`
 
 ## 概述
 
@@ -509,54 +509,54 @@ FEATURE_FLAG_BETA_API=false
 
 ## 文件结构
 
-\`\`\`
+```
 env/
 ├── .env.template          # 环境变量模板
 ├── .env.development       # 开发环境配置
 ├── .env.staging          # 测试环境配置
 ├── .env.production       # 生产环境配置
 └── .env.secrets          # 加密的敏感信息
-\`\`\`
+```
 
 ## 使用方法
 
 ### 1. 初始化配置
 
-\`\`\`bash
+```bash`
 node scripts/development/env-manager.js init
-\`\`\`
+```
 
 ### 2. 设置环境变量
 
-\`\`\`bash
+```bash`
 # 设置普通变量
 node scripts/development/env-manager.js set development PORT 3000
 
 # 设置敏感变量
 node scripts/development/env-manager.js set production DATABASE_PASSWORD secret123 --secret
-\`\`\`
+```
 
 ### 3. 查看环境变量
 
-\`\`\`bash
+```bash`
 node scripts/development/env-manager.js list development
-\`\`\`
+```
 
 ### 4. 验证配置
 
-\`\`\`bash
+```bash`
 node scripts/development/env-manager.js validate production
-\`\`\`
+```
 
 ### 5. 加密敏感信息
 
-\`\`\`bash
+```bash`
 node scripts/development/env-manager.js encrypt production
-\`\`\`
+```
 
 ## 环境变量说明
 
-`;
+`;`
 
     // 读取模板文件并解析变量说明
     if (fs.existsSync(this.templateFile)) {
@@ -579,7 +579,7 @@ node scripts/development/env-manager.js encrypt production
     docs += `
 ## 安全注意事项
 
-1. **永远不要**将 \`.env.*\` 文件提交到版本控制系统
+1. **永远不要**将 `.env.*` 文件提交到版本控制系统
 2. 使用加密功能保护敏感信息
 3. 定期轮换密钥和密码
 4. 在生产环境中使用环境变量注入而非文件

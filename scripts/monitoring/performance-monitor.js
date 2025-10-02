@@ -394,7 +394,7 @@ class PerformanceMonitor {
       `performance-report-${new Date().toISOString().split('T')[0]}.md`
     );
 
-    let report = `# 性能监控报告
+    let report = `# 性能监控报告`
 
 **生成时间**: ${new Date().toLocaleString()}
 
@@ -404,7 +404,7 @@ class PerformanceMonitor {
 
     // 系统指标
     if (metrics.system) {
-      report += `### 系统性能
+      report += `### 系统性能`
 
 | 指标 | 当前值 | 状态 |
 |------|--------|------|
@@ -421,7 +421,7 @@ class PerformanceMonitor {
       const sizeMB = (metrics.build.totalSize / 1024 / 1024).toFixed(2);
       const gzipMB = (metrics.build.gzipSize / 1024 / 1024).toFixed(2);
       
-      report += `### 构建性能
+      report += `### 构建性能`
 
 | 指标 | 值 |
 |------|-----|
@@ -446,7 +446,7 @@ class PerformanceMonitor {
 
     // Lighthouse 分数
     if (metrics.lighthouse) {
-      report += `### Lighthouse 性能评分
+      report += `### Lighthouse 性能评分`
 
 | 类别 | 分数 | 状态 |
 |------|------|------|
@@ -460,7 +460,7 @@ class PerformanceMonitor {
 
     // 告警信息
     if (alerts.length > 0) {
-      report += `## ⚠️ 性能告警
+      report += `## ⚠️ 性能告警`
 
 `;
       alerts.forEach((alert, index) => {
@@ -470,7 +470,7 @@ class PerformanceMonitor {
     }
 
     // 建议
-    report += `## 💡 优化建议
+    report += `## 💡 优化建议`
 
 ### 系统优化
 - 定期清理临时文件和日志
@@ -491,7 +491,7 @@ class PerformanceMonitor {
 
 ## 📈 历史趋势
 
-查看历史性能数据请参考 \`metrics/\` 目录下的数据文件。
+查看历史性能数据请参考 `metrics/` 目录下的数据文件。
 
 ---
 
