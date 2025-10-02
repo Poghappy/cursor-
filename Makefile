@@ -64,37 +64,37 @@ init: ## 初始化项目
 .PHONY: init-new-project
 init-new-project: ## 基于模板初始化新项目
 	@echo "$(BLUE)基于模板创建新项目...$(NC)"
-	@./scripts/create-project.sh --interactive
+	@./scripts/setup/create-project.sh --interactive
 	@echo "$(GREEN)新项目创建完成$(NC)"
 
 # 配置 Agent 环境
 .PHONY: setup-agent
 setup-agent: ## 配置 Cursor Agent 环境
 	@echo "$(BLUE)配置 Agent 环境...$(NC)"
-	@./scripts/setup-agent.sh
+	@./scripts/setup/setup-agent.sh
 	@echo "$(GREEN)Agent 环境配置完成$(NC)"
 
 ## 📁 文件管理
 .PHONY: check-files clean-temp check-duplicates promote-file find-similar fix-files
 check-files: ## 检查文件规范和健康度
 	@echo "$(BLUE)🔍 检查文件规范...$(NC)"
-	@node scripts/file-manager.js check
+	@node scripts/maintenance/file-manager.js check
 
 clean-temp: ## 清理过期临时文件
 	@echo "$(BLUE)🧹 清理临时文件...$(NC)"
-	@node scripts/file-manager.js clean
+	@node scripts/maintenance/file-manager.js clean
 
 check-duplicates: ## 检查重复文件
 	@echo "$(BLUE)🔍 检查重复文件...$(NC)"
-	@node scripts/file-manager.js duplicates
+	@node scripts/maintenance/file-manager.js duplicates
 
 promote-file: ## 提升临时文件为正式文档 (需要参数: FILE=path TARGET=dir)
 	@echo "$(BLUE)📤 提升文件: $(FILE) -> $(TARGET)$(NC)"
-	@node scripts/file-manager.js promote $(FILE) $(TARGET)
+	@node scripts/maintenance/file-manager.js promote $(FILE) $(TARGET)
 
 find-similar: ## 查找相似文档 (需要参数: FILE=path)
 	@echo "$(BLUE)🔍 查找相似文档: $(FILE)$(NC)"
-	@node scripts/file-manager.js similar $(FILE)
+	@node scripts/maintenance/file-manager.js similar $(FILE)
 
 fix-files: ## 自动修复文件问题
 	@echo "$(BLUE)🔧 修复文件问题...$(NC)"
@@ -429,27 +429,27 @@ init-new-project: ## 基于模板初始化新项目
 .PHONY: intelligent-agent
 intelligent-agent: ## 启动智能化 Agent 系统
 	@echo "$(PURPLE)启动智能化 Agent 系统...$(NC)"
-	@node scripts/intelligent-agent.js
+	@node scripts/agent/intelligent-agent.js
 
 .PHONY: smart-generate
 smart-generate: ## 启动智能项目生成器
 	@echo "$(PURPLE)启动智能项目生成器...$(NC)"
-	@node scripts/smart-project-generator.js
+	@node scripts/automation/smart-project-generator.js
 
 .PHONY: github-advisor
 github-advisor: ## 启动 GitHub 集成顾问
 	@echo "$(PURPLE)启动 GitHub 集成顾问...$(NC)"
-	@node scripts/github-integration-advisor.js
+	@node scripts/automation/github-integration-advisor.js
 
 .PHONY: agent-manager
 agent-manager: ## 启动 Agent 管理器
 	@echo "$(PURPLE)启动 Agent 管理器...$(NC)"
-	@node scripts/agent-manager.js
+	@node scripts/agent/agent-manager.js
 
 .PHONY: agent-workflow
 agent-workflow: ## 启动 Agent 工作流引擎
 	@echo "$(PURPLE)启动 Agent 工作流引擎...$(NC)"
-	@node scripts/agent-workflow.js
+	@node scripts/agent/agent-workflow.js
 
 # 一键智能开发
 .PHONY: smart-dev
@@ -457,37 +457,37 @@ smart-dev: ## 🚀 启动智能开发模式
 	@echo "$(CYAN)🚀 启动智能开发模式...$(NC)"
 	@echo "$(YELLOW)💡 优先使用现有GitHub项目，避免重复造轮子$(NC)"
 	@echo "1. 智能项目分析"
-	@node scripts/intelligent-agent.js
+	@node scripts/agent/intelligent-agent.js
 	@echo "2. GitHub 集成推荐"  
-	@node scripts/github-integration-advisor.js
+	@node scripts/automation/github-integration-advisor.js
 	@echo "3. 智能项目生成"
-	@node scripts/smart-project-generator.js
+	@node scripts/automation/smart-project-generator.js
 
 # Cursor IDE 故障排查
 .PHONY: diagnose-cursor
 diagnose-cursor: ## 🔍 诊断 Cursor IDE 崩溃问题
 	@echo "$(PURPLE)🔍 诊断 Cursor IDE 问题...$(NC)"
-	@./scripts/diagnose-cursor-crash.sh
+	@./scripts/cursor/diagnose-cursor-crash.sh
 
 .PHONY: fix-cursor
 fix-cursor: ## 🔧 快速修复 Cursor IDE 崩溃
 	@echo "$(PURPLE)🔧 修复 Cursor IDE...$(NC)"
-	@./scripts/quick-fix-crash.sh
+	@./scripts/cursor/quick-fix-crash.sh
 
 .PHONY: clean-cursor-cache
 clean-cursor-cache: ## 🧹 清理 Cursor 缓存
 	@echo "$(PURPLE)🧹 清理 Cursor 缓存...$(NC)"
-	@./scripts/fix-cursor-crash.sh clean-cache
+	@./scripts/cursor/fix-cursor-crash.sh clean-cache
 
 .PHONY: reset-cursor
 reset-cursor: ## ⚠️  重置 Cursor 配置（会备份）
 	@echo "$(RED)⚠️  重置 Cursor 配置...$(NC)"
-	@./scripts/fix-cursor-crash.sh reset-config
+	@./scripts/cursor/fix-cursor-crash.sh reset-config
 
 .PHONY: optimize-cursor
 optimize-cursor: ## ⚡ 优化 Cursor 性能配置
 	@echo "$(PURPLE)⚡ 优化 Cursor 配置...$(NC)"
-	@./scripts/fix-cursor-crash.sh reduce-features
+	@./scripts/cursor/fix-cursor-crash.sh reduce-features
 
 # 显示帮助
 .PHONY: commands
