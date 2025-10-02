@@ -88,10 +88,27 @@ pids/
 # TernJS port file
 .tern-port
 
-# Temporary files
+# Temporary files and directories
 *.tmp
+*.temp
 .git-commit-message.txt
 
-# Local scripts and temporary docs
+# Temporary work directories
 tmp/
 temp/
+.work/
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Draft and generated files
+*_draft.md
+*_temp.md
+*_generated.md
+
+# OS and editor temporary files
+.DS_Store
+.vscode/settings.json
+.idea/

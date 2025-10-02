@@ -74,6 +74,34 @@ setup-agent: ## 配置 Cursor Agent 环境
 	@./scripts/setup-agent.sh
 	@echo "$(GREEN)Agent 环境配置完成$(NC)"
 
+## 📁 文件管理
+.PHONY: check-files clean-temp check-duplicates promote-file find-similar fix-files
+check-files: ## 检查文件规范和健康度
+	@echo "$(BLUE)🔍 检查文件规范...$(NC)"
+	@node scripts/file-manager.js check
+
+clean-temp: ## 清理过期临时文件
+	@echo "$(BLUE)🧹 清理临时文件...$(NC)"
+	@node scripts/file-manager.js clean
+
+check-duplicates: ## 检查重复文件
+	@echo "$(BLUE)🔍 检查重复文件...$(NC)"
+	@node scripts/file-manager.js duplicates
+
+promote-file: ## 提升临时文件为正式文档 (需要参数: FILE=path TARGET=dir)
+	@echo "$(BLUE)📤 提升文件: $(FILE) -> $(TARGET)$(NC)"
+	@node scripts/file-manager.js promote $(FILE) $(TARGET)
+
+find-similar: ## 查找相似文档 (需要参数: FILE=path)
+	@echo "$(BLUE)🔍 查找相似文档: $(FILE)$(NC)"
+	@node scripts/file-manager.js similar $(FILE)
+
+fix-files: ## 自动修复文件问题
+	@echo "$(BLUE)🔧 修复文件问题...$(NC)"
+	@make check-files
+	@make clean-temp
+	@echo "$(GREEN)✅ 文件问题修复完成$(NC)"
+
 # 环境设置
 .PHONY: setup
 setup: init ## 设置开发环境
