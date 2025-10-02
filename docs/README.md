@@ -48,6 +48,7 @@ planning/PRODUCT_ROADMAP
 - `TEST_PLAN.md` - 测试计划
 - `AGENT_TOOLS_INTEGRATION_GUIDE.md` - 🤖 Agent 工具集成指南 ⭐
 - `GITHUB_TOOLS_RESEARCH.md` - 🔍 GitHub 工具研究详细结果 ⭐
+- `IMPLEMENTATION_PLAN.md` - 🚀 完整实施计划 ⭐
 
 ---
 
