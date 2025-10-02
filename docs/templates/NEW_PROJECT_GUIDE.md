@@ -152,6 +152,7 @@ cp -r $TEMPLATE_PATH/docs/templates ./docs/  # 文档模板
 #### 1. 更新项目信息
 
 编辑 `README.md`：
+
 ```markdown
 # 你的项目名称
 
@@ -162,16 +163,17 @@ cp -r $TEMPLATE_PATH/docs/templates ./docs/  # 文档模板
 本项目使用 Cursor AI Agent 团队协作系统进行开发。
 
 ### 可用 Agent 角色
+
 - @po - Product Owner
 - @pm - Product Manager
 - @ba - Business Analyst
 - @arch - Architect
 - @dev - Developer
-- @qa - QA Engineer
-... 更多角色
+- @qa - QA Engineer ... 更多角色
 ```
 
 编辑 `package.json`：
+
 ```json
 {
   "name": "your-project-name",
@@ -184,6 +186,7 @@ cp -r $TEMPLATE_PATH/docs/templates ./docs/  # 文档模板
 #### 2. 配置项目约束
 
 编辑 `Makefile`（如果使用）：
+
 ```makefile
 PROJECT_NAME = your-project-name
 VERSION = 1.0.0
@@ -193,6 +196,7 @@ COVERAGE_CMD = npm run coverage
 ```
 
 或在 `AGENTS.md` 中替换占位符：
+
 ```markdown
 - 质量门禁：`npm run lint`、`npm test` 必须通过
 - 单次变更：≤ 5 文件、单文件 ≤ 100 行
@@ -208,16 +212,19 @@ COVERAGE_CMD = npm run coverage
 # 项目特定规则
 
 ## 技术栈
+
 - 前端：React 18 + TypeScript
 - 后端：Node.js + Express
 - 数据库：PostgreSQL
 
 ## 代码规范
+
 - 使用函数式组件
 - 所有组件必须有 TypeScript 类型
 - API 调用必须有错误处理
 
 ## 测试要求
+
 - 新功能必须包含单元测试
 - 覆盖率不低于 80%
 ```
@@ -416,18 +423,18 @@ make pre-deploy-check  # 部署前检查
 
 ## 🎭 Agent 角色使用速查表
 
-| 角色 | 使用场景 | 示例命令 |
-|------|---------|---------|
-| **@po** | 需求分析、项目定义 | `@po 创建电商平台项目简介` |
-| **@pm** | 用户故事、需求管理 | `@pm 创建用户注册的用户故事` |
-| **@ba** | 需求细化、验收标准 | `@ba 定义支付功能的验收标准` |
-| **@pjm** | 任务分解、进度管理 | `@pjm 分解购物车功能的任务` |
-| **@arch** | 架构设计、技术选型 | `@arch 设计微服务架构方案` |
-| **@llme** | AI/LLM 集成方案 | `@llme 设计智能推荐系统` |
-| **@dev** | 代码实现、开发 | `@dev 实现用户认证模块` |
-| **@qa** | 测试、质量保证 | `@qa 为 API 编写集成测试` |
-| **@ops** | 部署、运维、监控 | `@ops 配置 CI/CD 流程` |
-| **@tw** | 文档编写 | `@tw 编写 API 使用文档` |
+| 角色      | 使用场景           | 示例命令                     |
+| --------- | ------------------ | ---------------------------- |
+| **@po**   | 需求分析、项目定义 | `@po 创建电商平台项目简介`   |
+| **@pm**   | 用户故事、需求管理 | `@pm 创建用户注册的用户故事` |
+| **@ba**   | 需求细化、验收标准 | `@ba 定义支付功能的验收标准` |
+| **@pjm**  | 任务分解、进度管理 | `@pjm 分解购物车功能的任务`  |
+| **@arch** | 架构设计、技术选型 | `@arch 设计微服务架构方案`   |
+| **@llme** | AI/LLM 集成方案    | `@llme 设计智能推荐系统`     |
+| **@dev**  | 代码实现、开发     | `@dev 实现用户认证模块`      |
+| **@qa**   | 测试、质量保证     | `@qa 为 API 编写集成测试`    |
+| **@ops**  | 部署、运维、监控   | `@ops 配置 CI/CD 流程`       |
+| **@tw**   | 文档编写           | `@tw 编写 API 使用文档`      |
 
 ---
 
@@ -455,6 +462,7 @@ cursor .
 - **大型项目**（5+人）：使用全部 10 个角色
 
 删除不需要的角色文件即可：
+
 ```bash
 rm prompts/roles/llme.md  # 如果不需要 LLM Engineer
 ```
@@ -479,10 +487,12 @@ rm prompts/roles/llme.md  # 如果不需要 LLM Engineer
 你是一个 [角色名称]，负责 [职责描述]
 
 ## 工作流程
+
 1. [步骤1]
 2. [步骤2]
 
 ## 输出标准
+
 - [标准1]
 - [标准2]
 ```
@@ -543,7 +553,8 @@ git commit -m "chore: 更新 Agent 系统到最新版本"
 
 ### Q8: 是否支持其他 IDE？
 
-**A**: 这个系统专为 Cursor IDE 设计，但核心的 `prompts/` 目录可以在任何支持 AI 对话的 IDE 中使用，只是需要手动复制提示词内容。
+**A**: 这个系统专为 Cursor IDE 设计，但核心的 `prompts/`
+目录可以在任何支持 AI 对话的 IDE 中使用，只是需要手动复制提示词内容。
 
 ---
 
@@ -616,4 +627,3 @@ git commit -m "chore: 更新 Agent 系统到最新版本"
 ---
 
 **🚀 祝你使用愉快！让 Cursor AI Agent 团队助力你的项目成功！**
-

@@ -87,3 +87,11 @@ pids/
 
 # TernJS port file
 .tern-port
+
+# Temporary files
+*.tmp
+.git-commit-message.txt
+
+# Local scripts and temporary docs
+tmp/
+temp/

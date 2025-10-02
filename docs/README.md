@@ -71,6 +71,7 @@
 - `QUICK_START_TEMPLATE.md` - 快速开始模板
 - `TEMPLATE_USAGE_GUIDE.md` - 模板使用指南
 - `REFERENCE_REPOS.md` - 参考仓库列表
+- `USER_REQUIREMENTS_TEMPLATE.md` - 用户需求输入模板
 
 ---
 
