@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "description": "第三方服务集成配置",
+  "version": "2.0.0",
+  "lastUpdated": "2025-10-02",
+
+  "github": {
+    "enabled": true,
+    "autoLinkIssues": true,
+    "prTemplates": true,
+    "templatePath": "config/pr-config.json",
+    "autoComments": false,
+    "branchProtection": true
+  },
+
+  "gitlab": {
+    "enabled": false,
+    "autoLinkIssues": false,
+    "mergeRequestTemplates": false
+  },
+
+  "jira": {
+    "enabled": false,
+    "apiToken": "${JIRA_API_TOKEN}",
+    "baseUrl": "",
+    "projectKey": "",
+    "autoLinkIssues": false,
+    "statusSync": false
+  },
+
+  "slack": {
+    "enabled": false,
+    "webhookUrl": "${SLACK_WEBHOOK_URL}",
+    "channels": {
+      "general": "",
+      "deployments": "",
+      "errors": ""
+    },
+    "notifications": {
+      "onDeploy": false,
+      "onError": false,
+      "onPR": false
+    }
+  },
+
+  "sentry": {
+    "enabled": false,
+    "dsn": "${SENTRY_DSN}",
+    "environment": "development",
+    "release": "",
+    "tracesSampleRate": 1.0
+  },
+
+  "datadog": {
+    "enabled": false,
+    "apiKey": "${DATADOG_API_KEY}",
+    "site": "datadoghq.com",
+    "service": "cursor-agent",
+    "env": "development"
+  },
+
+  "codecov": {
+    "enabled": false,
+    "token": "${CODECOV_TOKEN}",
+    "minCoverage": 80
+  },
+
+  "sonarqube": {
+    "enabled": false,
+    "host": "",
+    "token": "${SONARQUBE_TOKEN}",
+    "projectKey": ""
+  },
+
+  "docker": {
+    "enabled": false,
+    "registry": "docker.io",
+    "namespace": "",
+    "autoBuild": false
+  },
+
+  "kubernetes": {
+    "enabled": false,
+    "context": "default",
+    "namespace": "default",
+    "configPath": "~/.kube/config"
+  },
+
+  "aws": {
+    "enabled": false,
+    "region": "us-east-1",
+    "profile": "default",
+    "services": {
+      "s3": false,
+      "lambda": false,
+      "ecs": false
+    }
+  },
+
+  "vercel": {
+    "enabled": false,
+    "token": "${VERCEL_TOKEN}",
+    "teamId": "",
+    "projectId": ""
+  },
+
+  "railway": {
+    "enabled": false,
+    "token": "${RAILWAY_TOKEN}",
+    "projectId": "",
+    "environment": "production"
+  },
+
+  "webhooks": {
+    "enabled": false,
+    "endpoints": {
+      "onCommit": "",
+      "onDeploy": "",
+      "onError": ""
+    }
+  },
+
+  "notes": {
+    "environmentVariables": "所有 ${VAR} 格式的值都应该从环境变量中读取",
+    "security": "请勿在此文件中存储敏感信息，使用环境变量或密钥管理服务",
+    "setup": "使用 make setup-env 命令初始化环境变量"
+  }
+}

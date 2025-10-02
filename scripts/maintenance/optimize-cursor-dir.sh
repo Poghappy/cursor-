@@ -41,6 +41,9 @@ show_help() {
 create_backup() {
     echo -e "${YELLOW}📦 创建备份...${NC}"
     
+    # 创建备份目录
+    mkdir -p "$BACKUP_DIR"
+    
     if [ -d ".cursor" ]; then
         cp -r .cursor "$BACKUP_DIR/.cursor"
         echo -e "${GREEN}✓ .cursor 已备份到 $BACKUP_DIR${NC}"

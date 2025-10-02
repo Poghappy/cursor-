@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "description": "Cursor IDE 编辑器专属配置",
+  "version": "2.0.0",
+  "lastUpdated": "2025-10-02",
+
+  "editor": {
+    "contextWindow": {
+      "maxLines": 100,
+      "includeImports": true,
+      "includeTypes": true
+    },
+
+    "autoCompletion": {
+      "enabled": true,
+      "triggerCharacters": ["@", "/", "."],
+      "maxSuggestions": 10,
+      "showSnippets": true,
+      "prioritizeRecent": true
+    },
+
+    "inlineChat": {
+      "enabled": true,
+      "shortcuts": {
+        "accept": "Tab",
+        "reject": "Esc",
+        "nextSuggestion": "Alt+]",
+        "previousSuggestion": "Alt+["
+      },
+      "autoTrigger": true,
+      "delayMs": 500
+    },
+
+    "codeActions": {
+      "enabled": true,
+      "autoFix": true,
+      "quickFixes": true,
+      "refactorings": true,
+      "sourceActions": true
+    },
+
+    "chat": {
+      "defaultModel": "claude-3-5-sonnet",
+      "temperature": 0.7,
+      "maxTokens": 4000,
+      "contextFiles": 10,
+      "includeTests": true
+    }
+  },
+
+  "agent": {
+    "autoSuggest": true,
+    "roleDetection": true,
+    "stageTracking": true,
+    "handoverAssistance": true,
+
+    "roles": {
+      "enabled": true,
+      "path": "commands/roles",
+      "autoSwitch": false
+    },
+
+    "stages": {
+      "enabled": true,
+      "path": "commands/stages",
+      "autoProgress": false
+    },
+
+    "tools": {
+      "enabled": true,
+      "path": "commands/tools"
+    }
+  },
+
+  "rules": {
+    "strictMode": true,
+    "autoApply": true,
+    "customRulesPath": "config/rules.md"
+  },
+
+  "performance": {
+    "cacheEnabled": true,
+    "cacheSize": "100MB",
+    "preloadModels": false,
+    "maxConcurrentRequests": 3
+  },
+
+  "telemetry": {
+    "enabled": false,
+    "anonymousUsage": true
+  }
+}

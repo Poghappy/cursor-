@@ -112,3 +112,12 @@ temp/
 .DS_Store
 .vscode/settings.json
 .idea/
+
+# .cursor 运行时数据
+.cursor/data/sessions/
+.cursor/data/metrics/
+.cursor/data/cache/
+
+# .cursor 配置备份
+.cursor.backup.*
+

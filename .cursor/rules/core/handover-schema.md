@@ -1,11 +1,13 @@
 # 统一交接 JSON Schema
 
 ## 概述
+
 本文件定义了 Cursor 多角色 Agent 团队中所有角色之间交接信息的统一 JSON 格式，确保信息传递的标准化和一致性。
 
 ## 交接 JSON 结构
 
 ### 基础结构
+
 ```json
 {
   "inputs": {
@@ -66,6 +68,7 @@
 ## 字段详细说明
 
 ### inputs 字段
+
 - **role**: 当前执行的角色名称 (string, required)
 - **stage**: 当前执行的阶段名称 (string, required)
 - **artifacts**: 输入的文件路径列表 (array, required)
@@ -73,6 +76,7 @@
 - **notes**: 额外的说明信息 (string, optional)
 
 ### decisions 字段
+
 - **topic**: 决策的主题 (string, required)
 - **choice**: 最终选择的方案 (string, required)
 - **rationale**: 选择该方案的理由 (string, required)
@@ -81,6 +85,7 @@
 - **risks**: 决策带来的风险 (array, optional)
 
 ### artifacts 字段
+
 - **path**: 文件的相对路径 (string, required)
 - **type**: 文件类型 (string, required, 如 "document", "code", "test", "config")
 - **summary**: 文件内容的简要描述 (string, required)
@@ -92,6 +97,7 @@
   - **coverage**: 测试覆盖率结果 (string, optional)
 
 ### risks 字段
+
 - **name**: 风险名称 (string, required)
 - **impact**: 影响程度 (string, required, 如 "high", "medium", "low")
 - **probability**: 发生概率 (string, required, 如 "high", "medium", "low")
@@ -100,10 +106,12 @@
 - **deadline**: 解决期限 (string, optional)
 
 ### next_role 字段
+
 - **next_role**: 下一个执行的角色名称 (string, required)
 - **next_instruction**: 给下一个角色的具体指令 (string, required)
 
 ### metadata 字段
+
 - **timestamp**: 交接时间戳 (string, required, ISO 8601 格式)
 - **version**: 版本号 (string, required)
 - **author**: 当前角色作者 (string, required)
@@ -112,6 +120,7 @@
 ## 角色特定字段
 
 ### PO (Product Owner) 特定字段
+
 ```json
 {
   "inputs": {
@@ -135,6 +144,7 @@
 ```
 
 ### PM (Product Manager) 特定字段
+
 ```json
 {
   "inputs": {
@@ -156,6 +166,7 @@
 ```
 
 ### BA (Business Analyst) 特定字段
+
 ```json
 {
   "inputs": {
@@ -177,6 +188,7 @@
 ```
 
 ### PjM (Project Manager) 特定字段
+
 ```json
 {
   "inputs": {
@@ -198,6 +210,7 @@
 ```
 
 ### Arch (Architect) 特定字段
+
 ```json
 {
   "inputs": {
@@ -219,6 +232,7 @@
 ```
 
 ### Dev (Developer) 特定字段
+
 ```json
 {
   "inputs": {
@@ -241,6 +255,7 @@
 ```
 
 ### QA (Quality Assurance) 特定字段
+
 ```json
 {
   "inputs": {
@@ -263,6 +278,7 @@
 ```
 
 ### Ops (DevOps) 特定字段
+
 ```json
 {
   "inputs": {
@@ -285,6 +301,7 @@
 ```
 
 ### TW (Technical Writer) 特定字段
+
 ```json
 {
   "inputs": {
@@ -309,12 +326,14 @@
 ## 交接流程
 
 ### 1. 角色完成工作
+
 - 执行角色特定的任务
 - 生成相应的交付物
 - 记录决策和风险
 - 准备交接信息
 
 ### 2. 生成交接 JSON
+
 - 填写 inputs 字段
 - 记录 decisions 字段
 - 列出 artifacts 字段
@@ -322,12 +341,14 @@
 - 设置 next_role 和 next_instruction
 
 ### 3. 验证交接信息
+
 - 检查必填字段
 - 验证文件路径
 - 确认决策合理性
 - 评估风险等级
 
 ### 4. 传递给下一个角色
+
 - 输出交接 JSON
 - 等待下一个角色确认
 - 处理交接问题
@@ -336,6 +357,7 @@
 ## 交接质量检查
 
 ### 必填字段检查
+
 - [ ] inputs.role 已填写
 - [ ] inputs.stage 已填写
 - [ ] inputs.artifacts 已填写
@@ -345,6 +367,7 @@
 - [ ] next_instruction 已填写
 
 ### 内容质量检查
+
 - [ ] 决策理由充分
 - [ ] 风险识别完整
 - [ ] 文件路径正确
@@ -352,6 +375,7 @@
 - [ ] 时间戳格式正确
 
 ### 一致性检查
+
 - [ ] 角色与阶段匹配
 - [ ] 文件与描述一致
 - [ ] 决策与影响一致
@@ -360,6 +384,7 @@
 ## 交接模板
 
 ### 基础交接模板
+
 ```json
 {
   "inputs": {
@@ -420,24 +445,28 @@
 ## 交接最佳实践
 
 ### 信息完整性
+
 - 确保所有必填字段都已填写
 - 提供充分的上下文信息
 - 记录重要的决策过程
 - 识别潜在的风险点
 
 ### 信息准确性
+
 - 验证文件路径的正确性
 - 确认决策的合理性
 - 检查数据的准确性
 - 核实时间戳的格式
 
 ### 信息清晰性
+
 - 使用简洁明了的语言
 - 避免歧义和模糊表达
 - 提供具体的操作指令
 - 说明预期的输出结果
 
 ### 信息可追溯性
+
 - 记录决策的时间点
 - 保留决策的依据
 - 跟踪风险的演变
@@ -446,12 +475,14 @@
 ## 交接问题处理
 
 ### 常见问题
+
 1. **字段缺失**: 补充必填字段
 2. **路径错误**: 修正文件路径
 3. **格式错误**: 检查 JSON 格式
 4. **内容不一致**: 核实信息准确性
 
 ### 问题解决流程
+
 1. 识别问题类型
 2. 分析问题原因
 3. 制定解决方案
@@ -459,6 +490,7 @@
 5. 验证修复结果
 
 ### 问题预防措施
+
 1. 使用交接模板
 2. 进行质量检查
 3. 建立审查机制
