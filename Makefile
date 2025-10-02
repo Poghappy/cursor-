@@ -103,7 +103,7 @@ fix-files: ## 自动修复文件问题
 	@echo "$(GREEN)✅ 文件问题修复完成$(NC)"
 
 # 环境设置
-.PHONY: setup
+.PHONY: setup setup-git-hooks setup-env
 setup: init ## 设置开发环境
 	@echo "$(BLUE)设置开发环境...$(NC)"
 	@if [ ! -f $(ENV_FILE) ]; then \
@@ -111,6 +111,16 @@ setup: init ## 设置开发环境
 		echo "$(YELLOW)请编辑 $(ENV_FILE) 文件配置环境变量$(NC)"; \
 	fi
 	@echo "$(GREEN)环境设置完成$(NC)"
+
+setup-git-hooks: ## 设置 Git hooks
+	@echo "$(BLUE)🪝 设置 Git hooks...$(NC)"
+	@node scripts/development/git-hooks-manager.js install
+	@echo "$(GREEN)✅ Git hooks 设置完成$(NC)"
+
+setup-env: ## 初始化环境配置
+	@echo "$(BLUE)⚙️ 初始化环境配置...$(NC)"
+	@node scripts/development/env-manager.js init
+	@echo "$(GREEN)✅ 环境配置初始化完成$(NC)"
 
 # 依赖安装
 .PHONY: install
@@ -259,10 +269,26 @@ performance: ## 运行性能测试
 	@echo "$(GREEN)性能测试完成$(NC)"
 
 # 监控相关
-.PHONY: monitor
+.PHONY: monitor monitor-performance monitor-logs analyze-logs
 monitor: ## 启动监控
 	@echo "$(BLUE)启动监控...$(NC)"
 	@npm run monitor
+
+monitor-performance: ## 启动性能监控
+	@echo "$(BLUE)📊 启动性能监控...$(NC)"
+	@node scripts/monitoring/performance-monitor.js watch
+
+monitor-logs: ## 实时监控日志
+	@echo "$(BLUE)👁️ 启动日志监控...$(NC)"
+	@if [ -z "$(FILE)" ]; then \
+		echo "$(RED)❌ 请指定日志文件: make monitor-logs FILE=path/to/logfile$(NC)"; \
+	else \
+		node scripts/monitoring/log-analyzer.js watch $(FILE); \
+	fi
+
+analyze-logs: ## 分析日志文件
+	@echo "$(BLUE)🔍 分析日志文件...$(NC)"
+	@node scripts/monitoring/log-analyzer.js analyze
 
 # 部署相关
 .PHONY: deploy-dev
@@ -488,6 +514,46 @@ reset-cursor: ## ⚠️  重置 Cursor 配置（会备份）
 optimize-cursor: ## ⚡ 优化 Cursor 性能配置
 	@echo "$(PURPLE)⚡ 优化 Cursor 配置...$(NC)"
 	@./scripts/cursor/fix-cursor-crash.sh reduce-features
+
+# .cursor 目录优化
+.PHONY: cursor-optimize
+cursor-optimize: ## 🔧 优化 .cursor 目录结构
+	@echo "$(PURPLE)🔧 优化 .cursor 目录...$(NC)"
+	@./scripts/maintenance/optimize-cursor-dir.sh
+
+.PHONY: cursor-optimize-dry
+cursor-optimize-dry: ## 🔍 演练 .cursor 优化（不实际修改）
+	@echo "$(PURPLE)🔍 演练 .cursor 优化...$(NC)"
+	@./scripts/maintenance/optimize-cursor-dir.sh --dry-run
+
+.PHONY: cursor-backup
+cursor-backup: ## 💾 备份 .cursor 配置
+	@echo "$(PURPLE)💾 备份 .cursor 配置...$(NC)"
+	@./scripts/maintenance/optimize-cursor-dir.sh --backup-only
+
+.PHONY: cursor-validate
+cursor-validate: ## ✅ 验证 .cursor 配置
+	@echo "$(PURPLE)✅ 验证 .cursor 配置...$(NC)"
+	@if [ -d ".cursor" ]; then \
+		echo "$(GREEN)✓ .cursor 目录存在$(NC)"; \
+		echo "  文件数: $$(find .cursor -type f | wc -l | tr -d ' ')"; \
+		echo "  目录数: $$(find .cursor -type d | wc -l | tr -d ' ')"; \
+	else \
+		echo "$(RED)✗ .cursor 目录不存在$(NC)"; \
+	fi
+
+.PHONY: cursor-stats
+cursor-stats: ## 📊 显示 .cursor 统计信息
+	@echo "$(PURPLE)📊 .cursor 目录统计$(NC)"
+	@if [ -d ".cursor" ]; then \
+		echo "$(CYAN)目录结构:$(NC)"; \
+		tree .cursor -L 2 -I 'node_modules|.git|cache|sessions' 2>/dev/null || find .cursor -maxdepth 2 -type d; \
+		echo ""; \
+		echo "$(CYAN)大小统计:$(NC)"; \
+		du -sh .cursor; \
+	else \
+		echo "$(RED).cursor 目录不存在$(NC)"; \
+	fi
 
 # 显示帮助
 .PHONY: commands

@@ -30,7 +30,7 @@ node agent/agent-workflow.js
 **功能**：项目自动化和集成
 
 - `github-integration-advisor.js` - GitHub 集成顾问
-- `railway-automation.js` - Railway 部署自动化
+- `railway-automation.js` - Railway 部署自动化 ⭐
 - `smart-project-generator.js` - 智能项目生成器
 - `task-planner.js` - 任务规划器
 
@@ -49,6 +49,7 @@ node automation/github-integration-advisor.js
 **功能**：项目维护和文件管理
 
 - `file-manager.js` - 文件管理工具 ⭐
+- `project-health.js` - 项目健康检查 🆕
 - `policy-checks.js` - 策略检查
 - `check-env.js` - 环境检查
 
@@ -81,21 +82,51 @@ node maintenance/check-env.js
 ./cursor/quick-fix-crash.sh
 ```
 
+### ⚙️ development/ - 开发工具
+
+**功能**：开发环境配置和工具
+
+- `env-manager.js` - 环境变量管理器 🆕
+- `git-hooks-manager.js` - Git Hooks 管理器 🆕
+- `setup-agent.sh` - 配置 Agent 环境
+
+### 📊 monitoring/ - 监控工具
+
+**功能**：性能监控和日志分析
+
+- `performance-monitor.js` - 性能监控器 🆕
+- `log-analyzer.js` - 日志分析器 🆕
+
 ### ⚙️ setup/ - 项目设置
 
-**功能**：项目初始化和环境配置
+**功能**：项目初始化
 
 - `create-project.sh` - 创建新项目
-- `setup-agent.sh` - 配置 Agent 环境
 
 **使用场景**：
 
 ```bash
+# 环境变量管理
+node development/env-manager.js init
+node development/env-manager.js set development PORT 3000
+
+# Git Hooks 管理
+node development/git-hooks-manager.js install
+node development/git-hooks-manager.js test
+
+# 性能监控
+node monitoring/performance-monitor.js full
+node monitoring/performance-monitor.js watch
+
+# 日志分析
+node monitoring/log-analyzer.js analyze
+node monitoring/log-analyzer.js watch logs/app.log
+
 # 创建新项目
 ./setup/create-project.sh
 
 # 配置 Agent 环境
-./setup/setup-agent.sh
+./development/setup-agent.sh
 ```
 
 ---
@@ -109,6 +140,14 @@ node maintenance/check-env.js
 make check-files      # 等同于 node maintenance/file-manager.js check
 make clean-temp       # 等同于 node maintenance/file-manager.js clean
 make fix-files        # 综合文件问题修复
+
+# 环境和开发工具
+make setup-env        # 等同于 node development/env-manager.js init
+make setup-git-hooks  # 等同于 node development/git-hooks-manager.js install
+
+# 监控和分析
+make monitor-performance  # 等同于 node monitoring/performance-monitor.js watch
+make analyze-logs        # 等同于 node monitoring/log-analyzer.js analyze
 
 # Cursor 故障排查
 make diagnose-cursor  # 等同于 ./cursor/diagnose-cursor-crash.sh
@@ -131,6 +170,14 @@ node maintenance/file-manager.js check
 node maintenance/file-manager.js clean
 node maintenance/file-manager.js duplicates
 
+# 开发工具
+node development/env-manager.js list development
+node development/git-hooks-manager.js status
+
+# 监控工具
+node monitoring/performance-monitor.js system
+node monitoring/log-analyzer.js find
+
 # 项目生成
 node automation/smart-project-generator.js --interactive
 ```
@@ -148,6 +195,10 @@ node automation/smart-project-generator.js --interactive
 
 - `agent/intelligent-agent.js` - 智能 Agent
 - `automation/smart-project-generator.js` - 项目生成
+- `development/env-manager.js` - 环境变量管理 🆕
+- `development/git-hooks-manager.js` - Git Hooks 管理 🆕
+- `monitoring/performance-monitor.js` - 性能监控 🆕
+- `maintenance/project-health.js` - 项目健康检查 🆕
 - `maintenance/check-env.js` - 环境检查
 
 ### 🟢 设置工具（一次性使用）
@@ -158,7 +209,8 @@ node automation/smart-project-generator.js --interactive
 ### 🔵 高级工具（按需使用）
 
 - `automation/github-integration-advisor.js` - GitHub 集成
-- `automation/railway-automation.js` - 部署自动化
+- `automation/railway-automation.js` - 部署自动化 ⭐
+- `monitoring/log-analyzer.js` - 日志分析 🆕
 - `agent/memory-manager.js` - 记忆管理
 
 ---
@@ -211,9 +263,14 @@ set -e  # 遇到错误立即退出
 
 1. `maintenance/file-manager.js` - 文件管理 ⭐⭐⭐⭐⭐
 2. `cursor/fix-cursor-crash.sh` - Cursor 修复 ⭐⭐⭐⭐
-3. `agent/intelligent-agent.js` - 智能 Agent ⭐⭐⭐
-4. `automation/smart-project-generator.js` - 项目生成 ⭐⭐
-5. `setup/create-project.sh` - 项目创建 ⭐
+3. `development/env-manager.js` - 环境变量管理 ⭐⭐⭐ 🆕
+4. `monitoring/performance-monitor.js` - 性能监控 ⭐⭐⭐ 🆕
+5. `agent/intelligent-agent.js` - 智能 Agent ⭐⭐⭐
+6. `development/git-hooks-manager.js` - Git Hooks 管理 ⭐⭐ 🆕
+7. `automation/smart-project-generator.js` - 项目生成 ⭐⭐
+8. `monitoring/log-analyzer.js` - 日志分析 ⭐⭐ 🆕
+9. `automation/railway-automation.js` - 部署自动化 ⭐ 🆕
+10. `setup/create-project.sh` - 项目创建 ⭐
 
 ---
 
