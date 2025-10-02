@@ -47,7 +47,7 @@ export class UserController {
   /**
    * 获取用户列表
    */
-  public async getUsers(req: Request, res: Response): Promise<void> {
+  public async getUsers(_req: Request, res: Response): Promise<void> {
     try {
       const users = await userService.getAllUsers();
       res.json(users);
@@ -64,6 +64,10 @@ export class UserController {
   public async getUserById(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
+      if (!id) {
+        res.status(400).json({ error: 'User ID is required' });
+        return;
+      }
       const user = await userService.getUserById(id);
 
       if (!user) {
@@ -87,6 +91,10 @@ export class UserController {
   public async updateUser(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
+      if (!id) {
+        res.status(400).json({ error: 'User ID is required' });
+        return;
+      }
       const updateData = req.body as UpdateUserRequest;
 
       const user = await userService.updateUser(id, updateData);
@@ -111,6 +119,10 @@ export class UserController {
   public async deleteUser(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
+      if (!id) {
+        res.status(400).json({ error: 'User ID is required' });
+        return;
+      }
       const deleted = await userService.deleteUser(id);
 
       if (!deleted) {
