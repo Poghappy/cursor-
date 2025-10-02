@@ -2,7 +2,7 @@
  * 用户服务单元测试
  */
 
-import { UserService, CreateUserRequest } from '../user.service';
+import { CreateUserRequest, UserService } from '../user.service';
 
 describe('UserService', () => {
   let userService: UserService;

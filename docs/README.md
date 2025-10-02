@@ -46,6 +46,8 @@ planning/PRODUCT_ROADMAP
 
 - `TECH_DESIGN.md` - 技术架构设计
 - `TEST_PLAN.md` - 测试计划
+- `AGENT_TOOLS_INTEGRATION_GUIDE.md` - 🤖 Agent 工具集成指南 ⭐
+- `GITHUB_TOOLS_RESEARCH.md` - 🔍 GitHub 工具研究详细结果 ⭐
 
 ---
 
@@ -78,6 +80,7 @@ planning/PRODUCT_ROADMAP
 
 - `FILE_MANAGEMENT_GUIDE.md` - 文件管理使用指南
 - `TEMPLATE_USAGE_GUIDE.md` - 模板使用指南
+- `AGENT_TOOLS_QUICK_START.md` - 🤖 Agent 工具快速开始指南 ⭐
 
 #### 📁 references/ - 参考资料
 

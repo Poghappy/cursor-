@@ -555,6 +555,168 @@ cursor-stats: ## 📊 显示 .cursor 统计信息
 		echo "$(RED).cursor 目录不存在$(NC)"; \
 	fi
 
+# Agent 角色专用工具
+.PHONY: product-manager requirement-analyzer architecture-designer developer-tools test-manager operations-tools doc-generator llm-engineer project-coordinator
+
+# 产品管理工具
+product-manager: ## 📋 启动产品管理工具
+	@echo "$(BLUE)📋 启动产品管理工具...$(NC)"
+	@node scripts/agent/roles/product-manager.js
+
+product-roadmap: ## 📈 生成产品路线图
+	@echo "$(BLUE)📈 生成产品路线图...$(NC)"
+	@node scripts/agent/roles/product-manager.js roadmap --template=quarterly
+
+user-stories: ## 📝 管理用户故事
+	@echo "$(BLUE)📝 管理用户故事...$(NC)"
+	@node scripts/agent/roles/product-manager.js user-story --generate --validate
+
+feature-flags: ## 🚩 管理功能开关
+	@echo "$(BLUE)🚩 管理功能开关...$(NC)"
+	@node scripts/agent/roles/product-manager.js feature-flag --list --status
+
+# 需求分析工具
+requirement-analyzer: ## 📊 启动需求分析工具
+	@echo "$(BLUE)📊 启动需求分析工具...$(NC)"
+	@node scripts/agent/roles/requirement-analyzer.js
+
+requirements-analyze: ## 🔍 分析需求文档
+	@echo "$(BLUE)🔍 分析需求文档...$(NC)"
+	@node scripts/agent/roles/requirement-analyzer.js analyze --input=requirements.md
+
+process-model: ## 🏗️ 业务流程建模
+	@echo "$(BLUE)🏗️ 业务流程建模...$(NC)"
+	@node scripts/agent/roles/requirement-analyzer.js model --process=business-flow
+
+use-cases: ## 📋 生成用例
+	@echo "$(BLUE)📋 生成用例...$(NC)"
+	@node scripts/agent/roles/requirement-analyzer.js generate --use-cases --validate
+
+# 架构设计工具
+architecture-designer: ## 🏗️ 启动架构设计工具
+	@echo "$(BLUE)🏗️ 启动架构设计工具...$(NC)"
+	@node scripts/agent/roles/architecture-designer.js
+
+adr-create: ## 📝 创建架构决策记录
+	@echo "$(BLUE)📝 创建架构决策记录...$(NC)"
+	@node scripts/agent/roles/architecture-designer.js adr --create --template=standard
+
+system-design: ## 🎨 系统设计生成
+	@echo "$(BLUE)🎨 系统设计生成...$(NC)"
+	@node scripts/agent/roles/architecture-designer.js design --system --validate
+
+tech-stack: ## 🔧 技术栈推荐
+	@echo "$(BLUE)🔧 技术栈推荐...$(NC)"
+	@node scripts/agent/roles/architecture-designer.js stack --recommend --context=project
+
+# 开发工程工具
+developer-tools: ## 💻 启动开发工程工具
+	@echo "$(BLUE)💻 启动开发工程工具...$(NC)"
+	@node scripts/agent/roles/developer-tools.js
+
+code-generate: ## ⚡ 代码生成
+	@echo "$(BLUE)⚡ 代码生成...$(NC)"
+	@node scripts/agent/roles/developer-tools.js generate --type=service --template=crud
+
+api-client: ## 🔌 API 客户端生成
+	@echo "$(BLUE)🔌 API 客户端生成...$(NC)"
+	@node scripts/agent/roles/developer-tools.js api-client --spec=openapi.json
+
+migration: ## 🗄️ 数据库迁移
+	@echo "$(BLUE)🗄️ 数据库迁移...$(NC)"
+	@node scripts/agent/roles/developer-tools.js migrate --database=postgresql
+
+# 测试管理工具
+test-manager: ## 🧪 启动测试管理工具
+	@echo "$(BLUE)🧪 启动测试管理工具...$(NC)"
+	@node scripts/agent/roles/test-manager.js
+
+test-generate: ## 📝 生成测试用例
+	@echo "$(BLUE)📝 生成测试用例...$(NC)"
+	@node scripts/agent/roles/test-manager.js generate --type=unit --coverage=80%
+
+quality-gate: ## 🚪 质量门禁检查
+	@echo "$(BLUE)🚪 质量门禁检查...$(NC)"
+	@node scripts/agent/roles/test-manager.js quality-gate --check --threshold=90%
+
+test-framework: ## 🏗️ 测试框架设置
+	@echo "$(BLUE)🏗️ 测试框架设置...$(NC)"
+	@node scripts/agent/roles/test-manager.js framework --setup --type=jest
+
+# 运维部署工具
+operations-tools: ## 🚀 启动运维部署工具
+	@echo "$(BLUE)🚀 启动运维部署工具...$(NC)"
+	@node scripts/agent/roles/operations-tools.js
+
+infrastructure: ## 🏗️ 基础设施即代码
+	@echo "$(BLUE)🏗️ 基础设施即代码...$(NC)"
+	@node scripts/agent/roles/operations-tools.js infrastructure --generate --provider=aws
+
+pipeline: ## 🔄 CI/CD 管道生成
+	@echo "$(BLUE)🔄 CI/CD 管道生成...$(NC)"
+	@node scripts/agent/roles/operations-tools.js pipeline --create --type=github-actions
+
+monitor-setup: ## 📊 监控设置
+	@echo "$(BLUE)📊 监控设置...$(NC)"
+	@node scripts/agent/roles/operations-tools.js monitor --setup --dashboard=grafana
+
+# 技术文档工具
+doc-generator: ## 📚 启动技术文档工具
+	@echo "$(BLUE)📚 启动技术文档工具...$(NC)"
+	@node scripts/agent/roles/doc-generator.js
+
+api-docs: ## 📖 API 文档生成
+	@echo "$(BLUE)📖 API 文档生成...$(NC)"
+	@node scripts/agent/roles/doc-generator.js api --spec=openapi.json --format=markdown
+
+user-manual: ## 📘 用户手册生成
+	@echo "$(BLUE)📘 用户手册生成...$(NC)"
+	@node scripts/agent/roles/doc-generator.js template --type=user-manual --generate
+
+changelog: ## 📝 变更日志管理
+	@echo "$(BLUE)📝 变更日志管理...$(NC)"
+	@node scripts/agent/roles/doc-generator.js changelog --update --version=1.0.0
+
+# AI 工程工具
+llm-engineer: ## 🤖 启动 AI 工程工具
+	@echo "$(BLUE)🤖 启动 AI 工程工具...$(NC)"
+	@node scripts/agent/roles/llm-engineer.js
+
+prompt-optimize: ## 🎯 提示工程优化
+	@echo "$(BLUE)🎯 提示工程优化...$(NC)"
+	@node scripts/agent/roles/llm-engineer.js prompt --optimize --context=product
+
+model-manage: ## 🧠 模型管理
+	@echo "$(BLUE)🧠 模型管理...$(NC)"
+	@node scripts/agent/roles/llm-engineer.js model --manage --version=latest
+
+ai-assess: ## 📊 AI 能力评估
+	@echo "$(BLUE)📊 AI 能力评估...$(NC)"
+	@node scripts/agent/roles/llm-engineer.js assess --capability --benchmark
+
+# 项目管理工具
+project-coordinator: ## 📅 启动项目管理工具
+	@echo "$(BLUE)📅 启动项目管理工具...$(NC)"
+	@node scripts/agent/roles/project-coordinator.js
+
+timeline: ## ⏰ 项目时间线生成
+	@echo "$(BLUE)⏰ 项目时间线生成...$(NC)"
+	@node scripts/agent/roles/project-coordinator.js timeline --generate --milestones
+
+resource-plan: ## 👥 资源规划
+	@echo "$(BLUE)👥 资源规划...$(NC)"
+	@node scripts/agent/roles/project-coordinator.js resource --plan --allocation
+
+risk-assess: ## ⚠️ 风险评估
+	@echo "$(BLUE)⚠️ 风险评估...$(NC)"
+	@node scripts/agent/roles/project-coordinator.js risk --assess --matrix
+
+# 项目健康检查
+.PHONY: project-health
+project-health: ## 💖 项目健康度检查
+	@echo "$(BLUE)💖 运行项目健康度检查...$(NC)"
+	@node scripts/maintenance/project-health.js
+
 # 显示帮助
 .PHONY: commands
 commands: ## 显示所有可用命令
