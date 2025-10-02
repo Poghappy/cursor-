@@ -156,40 +156,42 @@ class FileOutputValidator {
             const lineNum = index + 1;
 
             // 检查错误的转义
-            if (line.includes('`') || line.includes('${')) {`
+            if (line.includes('`') || line.includes('${')) {
+                `
                 issues.push({
                     type: 'template_escape',
                     file,
                     line: lineNum,
-                    message: `第${lineNum}行: 模板字符串转义错误`,
+                    message: `第${ lineNum } 行: 模板字符串转义错误`,
                     original: line,
-                    replacement: line.replace(/`/g, '`').replace(/\\\$\{/g, '${'),
-                    fix: true
-                });
-            }
+                    replacement: line.replace(/`/ g, '`').replace(/\\\$\{/g, '${'),
+            fix: true
+    });
+}
 
-            // 检查未终止的模板字符串
-            const backticks = (line.match(/`/g) || []).length;
-            if (backticks % 2 !== 0) {
-                issues.push({
-                    type: 'template_unterminated',
-                    file,
-                    line: lineNum,
-                    message: `第${lineNum}行: 未终止的模板字符串`,
-                    original: line,
-                    fix: false
-                });
-            }
+// 检查未终止的模板字符串
+const backticks = (line.match(/`/g) || []).length;
+if (backticks % 2 !== 0) {
+    issues.push({
+        type: 'template_unterminated',
+        file,
+        line: lineNum,
+        message: `第${lineNum}行: 未终止的模板字符串`,
+        original: line,
+        fix: false
+    });
+}
 
-            // 检查混合引号
-            if (line.includes('`') && (line.includes('"') || line.includes("'"))) {`
-                const hasUnescapedQuotes = /`[^`]*"[^`]*`/.test(line) || /`[^`]*'[^`]*`/.test(line);
+// 检查混合引号
+if (line.includes('`') && (line.includes('"') || line.includes("'"))) {
+    `
+                const hasUnescapedQuotes = /`[^ `]*"[^`] * `/.test(line) || /`[^ `]*'[^`] * `/.test(line);
                 if (hasUnescapedQuotes) {
                     issues.push({
                         type: 'template_mixed_quotes',
                         file,
                         line: lineNum,
-                        message: `第${lineNum}行: 模板字符串中混合引号可能导致问题`,
+                        message: `第${ lineNum } 行: 模板字符串中混合引号可能导致问题`,
                         original: line,
                         fix: false
                     });
@@ -220,10 +222,10 @@ class FileOutputValidator {
                     this.warnings.push({
                         type: 'control_chars',
                         file,
-                        message: `包含控制字符: ${controlChars.join(', ')}`,
+                        message: `包含控制字符: ${ controlChars.join(', ') } `,
                         count: controlChars.length
                     });
-                    console.log(`  ⚠️ ${file}: 包含 ${controlChars.length} 个控制字符`);
+                    console.log(`  ⚠️ ${ file }: 包含 ${ controlChars.length } 个控制字符`);
                 }
 
                 // 检查 BOM
@@ -235,18 +237,18 @@ class FileOutputValidator {
                         message: '包含 BOM (Byte Order Mark)',
                         fix: true
                     });
-                    console.log(`  ⚠️ ${file}: 包含 BOM`);
+                    console.log(`  ⚠️ ${ file }: 包含 BOM`);
                 }
 
                 if (this.options.verbose && !controlChars && content.charCodeAt(0) !== 0xFEFF) {
-                    console.log(`  ✅ ${file}`);
+                    console.log(`  ✅ ${ file } `);
                 }
             } catch (error) {
-                console.log(`  ⚠️ 无法检查编码 ${file}: ${error.message}`);
+                console.log(`  ⚠️ 无法检查编码 ${ file }: ${ error.message } `);
             }
         }
 
-        console.log(`字符编码检查完成: ${encodingIssues} 个问题\n`);
+        console.log(`字符编码检查完成: ${ encodingIssues } 个问题\n`);
     }
 
     /**
@@ -263,165 +265,165 @@ class FileOutputValidator {
                 const content = await fs.readFile(file, 'utf8');
 
                 // 检查硬编码路径分隔符
-                const hardcodedPaths = content.match(/['"`][^'"`]*\\[^'"`]*['"`]/g);
+                const hardcodedPaths = content.match(/['"`][^ '"`]*\\[^'"`]*['"`]/g);
                 if (hardcodedPaths) {
                     pathIssues++;
                     this.warnings.push({
                         type: 'hardcoded_path',
                         file,
-                        message: `硬编码路径分隔符: ${hardcodedPaths.join(', ')}`,
+                        message: `硬编码路径分隔符: ${ hardcodedPaths.join(', ') }`,
                         suggestions: ['使用 path.join() 或 path.resolve()']
                     });
-                    console.log(`  ⚠️ ${file}: 硬编码路径分隔符`);
+                    console.log(`  ⚠️ ${ file }: 硬编码路径分隔符`);
                 }
 
                 // 检查相对路径
                 const relativePaths = content.match(/['"`]\.\.?\/[^'"`]*['"`]/g);
-                if (relativePaths) {
-                    this.warnings.push({
-                        type: 'relative_path',
-                        file,
-                        message: `相对路径: ${relativePaths.join(', ')}`,
-                        suggestions: ['考虑使用绝对路径或 path.resolve()']
-                    });
-                    console.log(`  ⚠️ ${file}: 使用相对路径`);
-                }
+    if (relativePaths) {
+        this.warnings.push({
+            type: 'relative_path',
+            file,
+            message: `相对路径: ${relativePaths.join(', ')}`,
+            suggestions: ['考虑使用绝对路径或 path.resolve()']
+        });
+        console.log(`  ⚠️ ${file}: 使用相对路径`);
+    }
 
-                if (this.options.verbose && !hardcodedPaths && !relativePaths) {
-                    console.log(`  ✅ ${file}`);
-                }
-            } catch (error) {
-                console.log(`  ⚠️ 无法检查路径 ${file}: ${error.message}`);
-            }
+    if (this.options.verbose && !hardcodedPaths && !relativePaths) {
+        console.log(`  ✅ ${file}`);
+    }
+} catch (error) {
+    console.log(`  ⚠️ 无法检查路径 ${file}: ${error.message}`);
+}
         }
 
-        console.log(`文件路径检查完成: ${pathIssues} 个问题\n`);
+console.log(`文件路径检查完成: ${pathIssues} 个问题\n`);
     }
 
     /**
      * 获取要检查的文件列表
      */
     async getFiles() {
-        const files = [];
+    const files = [];
 
-        for (const dir of this.options.directories) {
-            if (await this.directoryExists(dir)) {
-                const dirFiles = await this.getFilesInDirectory(dir);
-                files.push(...dirFiles);
-            }
+    for (const dir of this.options.directories) {
+        if (await this.directoryExists(dir)) {
+            const dirFiles = await this.getFilesInDirectory(dir);
+            files.push(...dirFiles);
         }
-
-        return files;
     }
+
+    return files;
+}
 
     /**
      * 获取目录中的文件
      */
     async getFilesInDirectory(dir) {
-        const files = [];
+    const files = [];
 
-        try {
-            const entries = await fs.readdir(dir, { withFileTypes: true });
+    try {
+        const entries = await fs.readdir(dir, { withFileTypes: true });
 
-            for (const entry of entries) {
-                const fullPath = path.join(dir, entry.name);
+        for (const entry of entries) {
+            const fullPath = path.join(dir, entry.name);
 
-                if (entry.isDirectory()) {
-                    const subFiles = await this.getFilesInDirectory(fullPath);
-                    files.push(...subFiles);
-                } else if (entry.isFile()) {
-                    const ext = path.extname(entry.name);
-                    if (this.options.fileExtensions.includes(ext)) {
-                        files.push(fullPath);
-                    }
+            if (entry.isDirectory()) {
+                const subFiles = await this.getFilesInDirectory(fullPath);
+                files.push(...subFiles);
+            } else if (entry.isFile()) {
+                const ext = path.extname(entry.name);
+                if (this.options.fileExtensions.includes(ext)) {
+                    files.push(fullPath);
                 }
             }
-        } catch (error) {
-            console.log(`  ⚠️ 无法读取目录 ${dir}: ${error.message}`);
         }
-
-        return files;
+    } catch (error) {
+        console.log(`  ⚠️ 无法读取目录 ${dir}: ${error.message}`);
     }
+
+    return files;
+}
 
     /**
      * 检查目录是否存在
      */
     async directoryExists(dir) {
-        try {
-            const stat = await fs.stat(dir);
-            return stat.isDirectory();
-        } catch {
-            return false;
-        }
+    try {
+        const stat = await fs.stat(dir);
+        return stat.isDirectory();
+    } catch {
+        return false;
+    }
+}
+
+/**
+ * 生成验证报告
+ */
+generateReport() {
+    console.log('📊 验证报告');
+    console.log('='.repeat(50));
+
+    console.log(`\n❌ 错误: ${this.errors.length}`);
+    if (this.errors.length > 0) {
+        this.errors.forEach(error => {
+            console.log(`  - ${error.message}`);
+            if (error.details) {
+                console.log(`    详情: ${error.details}`);
+            }
+        });
     }
 
-    /**
-     * 生成验证报告
-     */
-    generateReport() {
-        console.log('📊 验证报告');
-        console.log('='.repeat(50));
-
-        console.log(`\n❌ 错误: ${this.errors.length}`);
-        if (this.errors.length > 0) {
-            this.errors.forEach(error => {
-                console.log(`  - ${error.message}`);
-                if (error.details) {
-                    console.log(`    详情: ${error.details}`);
-                }
-            });
-        }
-
-        console.log(`\n⚠️ 警告: ${this.warnings.length}`);
-        if (this.warnings.length > 0) {
-            this.warnings.forEach(warning => {
-                console.log(`  - ${warning.message}`);
-                if (warning.suggestions) {
-                    console.log(`    建议: ${warning.suggestions.join(', ')}`);
-                }
-            });
-        }
-
-        console.log(`\n🔧 可修复: ${this.fixed.length}`);
-        if (this.fixed.length > 0) {
-            this.fixed.forEach(fix => {
-                console.log(`  - ${fix.file}: ${fix.type}`);
-            });
-        }
-
-        const totalIssues = this.errors.length + this.warnings.length;
-        if (totalIssues === 0) {
-            console.log('\n✅ 所有检查通过！文件输出质量良好。');
-        } else {
-            console.log(`\n📋 总计: ${totalIssues} 个问题需要处理`);
-        }
+    console.log(`\n⚠️ 警告: ${this.warnings.length}`);
+    if (this.warnings.length > 0) {
+        this.warnings.forEach(warning => {
+            console.log(`  - ${warning.message}`);
+            if (warning.suggestions) {
+                console.log(`    建议: ${warning.suggestions.join(', ')}`);
+            }
+        });
     }
+
+    console.log(`\n🔧 可修复: ${this.fixed.length}`);
+    if (this.fixed.length > 0) {
+        this.fixed.forEach(fix => {
+            console.log(`  - ${fix.file}: ${fix.type}`);
+        });
+    }
+
+    const totalIssues = this.errors.length + this.warnings.length;
+    if (totalIssues === 0) {
+        console.log('\n✅ 所有检查通过！文件输出质量良好。');
+    } else {
+        console.log(`\n📋 总计: ${totalIssues} 个问题需要处理`);
+    }
+}
 
     /**
      * 应用自动修复
      */
     async applyFixes() {
-        console.log('\n🔧 应用自动修复...');
+    console.log('\n🔧 应用自动修复...');
 
-        for (const fix of this.fixed) {
-            try {
-                const content = await fs.readFile(fix.file, 'utf8');
-                const newContent = content.replace(fix.original, fix.replacement);
-                await fs.writeFile(fix.file, newContent, 'utf8');
-                console.log(`  ✅ 修复: ${fix.file}`);
-            } catch (error) {
-                console.log(`  ❌ 修复失败: ${fix.file} - ${error.message}`);
-            }
+    for (const fix of this.fixed) {
+        try {
+            const content = await fs.readFile(fix.file, 'utf8');
+            const newContent = content.replace(fix.original, fix.replacement);
+            await fs.writeFile(fix.file, newContent, 'utf8');
+            console.log(`  ✅ 修复: ${fix.file}`);
+        } catch (error) {
+            console.log(`  ❌ 修复失败: ${fix.file} - ${error.message}`);
         }
-
-        console.log(`\n✅ 自动修复完成: ${this.fixed.length} 个文件`);
     }
 
-    /**
-     * 显示帮助信息
-     */
-    showHelp() {
-        console.log(`
+    console.log(`\n✅ 自动修复完成: ${this.fixed.length} 个文件`);
+}
+
+/**
+ * 显示帮助信息
+ */
+showHelp() {
+    console.log(`
 🔍 文件输出验证器
 
 用法: node file-output-validator.js [选项]
@@ -440,7 +442,7 @@ class FileOutputValidator {
   node file-output-validator.js
   node file-output-validator.js --auto-fix --verbose
   node file-output-validator.js --directories=src/ --extensions=.ts
-        `);`
+        `); `
     }
 }
 
@@ -481,7 +483,7 @@ async function main() {
         const totalIssues = validator.errors.length + validator.warnings.length;
         process.exit(totalIssues > 0 ? 1 : 0);
     } catch (error) {
-        console.error(`❌ 验证失败: ${error.message}`);
+        console.error(`❌ 验证失败: ${ error.message } `);
         process.exit(1);
     }
 }
