@@ -11,6 +11,7 @@
 ### 重组目标
 
 解决项目文件组织问题：
+
 - 脚本文件平铺，功能混杂
 - 配置文件散落各处
 - 缺乏清晰的分类体系
@@ -30,6 +31,7 @@
 ### 1. 📁 scripts/ 目录重组 ✅
 
 **重组前**：16个脚本文件平铺
+
 ```
 scripts/
 ├── agent-manager.js
@@ -51,6 +53,7 @@ scripts/
 ```
 
 **重组后**：按功能分类到5个子目录
+
 ```
 scripts/
 ├── agent/                    # Agent 系统相关
@@ -78,6 +81,7 @@ scripts/
 ```
 
 **优化效果**：
+
 - ✅ 脚本分类清晰，易于查找
 - ✅ 功能相关的脚本集中管理
 - ✅ 新增详细的使用说明文档
@@ -86,6 +90,7 @@ scripts/
 ### 2. ⚙️ .cursor/ 目录重组 ✅
 
 **重组前**：配置和规则文件混在一起
+
 ```
 .cursor/
 ├── rules/
@@ -105,6 +110,7 @@ scripts/
 ```
 
 **重组后**：规则分类，配置独立
+
 ```
 .cursor/
 ├── rules/
@@ -130,6 +136,7 @@ scripts/
 ```
 
 **优化效果**：
+
 - ✅ 规则按类型分组，便于管理
 - ✅ 配置文件集中存放
 - ✅ 结构更加清晰合理
@@ -137,11 +144,13 @@ scripts/
 ### 3. 📚 docs/examples/ 目录扩展 ✅
 
 **扩展前**：空目录
+
 ```
 docs/examples/
 ```
 
 **扩展后**：按类型预设子目录
+
 ```
 docs/examples/
 ├── agent-workflows/         # Agent 工作流示例
@@ -151,6 +160,7 @@ docs/examples/
 ```
 
 **预期用途**：
+
 - 存放各种使用示例
 - 演示最佳实践
 - 新手学习参考
@@ -162,6 +172,7 @@ docs/examples/
 ### 1. docs/product/ 目录细分
 
 **当前状态**：7个文件平铺
+
 ```
 docs/product/
 ├── PRD_v2.md
@@ -174,6 +185,7 @@ docs/product/
 ```
 
 **建议结构**：
+
 ```
 docs/product/
 ├── requirements/             # 需求文档
@@ -188,6 +200,7 @@ docs/product/
 ```
 
 **实施建议**：
+
 - 🟡 **中等优先级**：当产品文档超过10个时考虑
 - 📊 **当前状态**：7个文件，暂时可管理
 - 🔮 **触发条件**：文档数量 > 10个或出现查找困难
@@ -195,6 +208,7 @@ docs/product/
 ### 2. docs/project/ 目录按阶段分组
 
 **当前状态**：6个文件平铺
+
 ```
 docs/project/
 ├── ACCEPTANCE_CRITERIA.md
@@ -206,6 +220,7 @@ docs/project/
 ```
 
 **建议结构**：
+
 ```
 docs/project/
 ├── planning/                 # 规划阶段
@@ -220,6 +235,7 @@ docs/project/
 ```
 
 **实施建议**：
+
 - 🟡 **中等优先级**：项目管理文档较多时考虑
 - 📊 **当前状态**：6个文件，结构相对清晰
 - 🔮 **触发条件**：项目管理文档 > 12个
@@ -227,6 +243,7 @@ docs/project/
 ### 3. docs/technical/ 目录扩展
 
 **当前状态**：仅2个文件
+
 ```
 docs/technical/
 ├── TECH_DESIGN.md
@@ -234,6 +251,7 @@ docs/technical/
 ```
 
 **建议结构**：
+
 ```
 docs/technical/
 ├── architecture/             # 架构设计
@@ -246,6 +264,7 @@ docs/technical/
 ```
 
 **实施建议**：
+
 - 🟢 **低优先级**：技术文档增多时再考虑
 - 📊 **当前状态**：文件太少，暂不需要
 - 🔮 **触发条件**：技术文档 > 8个
@@ -253,6 +272,7 @@ docs/technical/
 ### 4. docs/templates/ 目录按类型分组
 
 **当前状态**：6个文件平铺
+
 ```
 docs/templates/
 ├── FILE_MANAGEMENT_GUIDE.md
@@ -264,6 +284,7 @@ docs/templates/
 ```
 
 **建议结构**：
+
 ```
 docs/templates/
 ├── project/                  # 项目模板
@@ -278,6 +299,7 @@ docs/templates/
 ```
 
 **实施建议**：
+
 - 🟡 **中等优先级**：模板文档较多时考虑
 - 📊 **当前状态**：6个文件，边界情况
 - 🔮 **触发条件**：模板文档 > 10个
@@ -306,12 +328,14 @@ docs/templates/
 ### 技术指标
 
 **重组统计**：
+
 - 📁 移动文件：30个
 - 🆕 新建目录：9个
 - 📝 更新引用：15处
 - 📚 新增文档：1个
 
 **Git 提交记录**：
+
 ```
 commit 25283f6
 refactor: 重组项目目录结构，提升文件组织性
@@ -342,14 +366,14 @@ refactor: 重组项目目录结构，提升文件组织性
 
 ### 扩展触发条件
 
-| 目录 | 当前文件数 | 建议重组阈值 | 触发条件 |
-|------|-----------|-------------|----------|
-| `docs/product/` | 7 | 10+ | 产品文档过多 |
-| `docs/project/` | 6 | 12+ | 项目管理复杂 |
-| `docs/technical/` | 2 | 8+ | 技术文档增多 |
-| `docs/templates/` | 6 | 10+ | 模板类型丰富 |
-| `scripts/agent/` | 4 | 8+ | Agent 功能扩展 |
-| `scripts/automation/` | 4 | 8+ | 自动化需求增加 |
+| 目录                  | 当前文件数 | 建议重组阈值 | 触发条件       |
+| --------------------- | ---------- | ------------ | -------------- |
+| `docs/product/`       | 7          | 10+          | 产品文档过多   |
+| `docs/project/`       | 6          | 12+          | 项目管理复杂   |
+| `docs/technical/`     | 2          | 8+           | 技术文档增多   |
+| `docs/templates/`     | 6          | 10+          | 模板类型丰富   |
+| `scripts/agent/`      | 4          | 8+           | Agent 功能扩展 |
+| `scripts/automation/` | 4          | 8+           | 自动化需求增加 |
 
 ---
 
@@ -358,12 +382,14 @@ refactor: 重组项目目录结构，提升文件组织性
 ### 如何应用到新项目
 
 1. **直接复制结构**：
+
 ```bash
 # 克隆项目时自动获得优化的目录结构
 git clone https://github.com/Poghappy/cursor-.git new-project
 ```
 
 2. **选择性应用**：
+
 ```bash
 # 只复制需要的目录结构
 mkdir -p scripts/{agent,automation,maintenance,cursor,setup}
@@ -371,6 +397,7 @@ mkdir -p .cursor/{rules/{core,workflow,project},config}
 ```
 
 3. **渐进式重组**：
+
 ```bash
 # 在现有项目中逐步应用
 make check-files  # 检查当前状态

@@ -219,10 +219,10 @@ set -e  # 遇到错误立即退出
 
 ## 🔗 相关文档
 
-- [文件管理指南](../docs/templates/FILE_MANAGEMENT_GUIDE.md)
+- [文件管理指南](../docs/templates/management/FILE_MANAGEMENT_GUIDE.md)
 - [Cursor 故障排查](../docs/cursor/CURSOR_TROUBLESHOOTING.md)
 - [智能系统指南](../docs/cursor/INTELLIGENT_SYSTEM_GUIDE.md)
-- [新项目指南](../docs/templates/NEW_PROJECT_GUIDE.md)
+- [新项目指南](../docs/templates/project/NEW_PROJECT_GUIDE.md)
 
 ---
 

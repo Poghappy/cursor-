@@ -11,14 +11,15 @@
 **产品规划和需求定义文档**
 
 - `PROJECT_BRIEF.md` - 项目概览（目标、里程碑、成功指标）
-- `PRD.md` - 产品需求文档（原始版本）
-- `PRD_v2.md` - 产品需求文档（完整版本）⭐
-- `USER_STORIES.md` - 用户故事（Epic和详细故事）
-- `PRODUCT_BACKLOG.md` - 产品待办事项（RICE评分）
-- `PRODUCT_ROADMAP.md` - 产品路线图（3阶段发布计划）
-- `PRODUCT_KPI.md` - 产品关键绩效指标
+- `requirements/PRD.md` - 产品需求文档（原始版本）
+- `requirements/PRD_v2.md` - 产品需求文档（完整版本）⭐
+- `requirements/USER_STORIES.md` - 用户故事（Epic和详细故事）
+- `planning/PRODUCT_BACKLOG.md` - 产品待办事项（RICE评分）
+- `planning/PRODUCT_ROADMAP.md` - 产品路线图（3阶段发布计划）
+- `planning/PRODUCT_KPI.md` - 产品关键绩效指标
 
-**推荐阅读顺序**: PROJECT_BRIEF → PRD_v2 → USER_STORIES → PRODUCT_ROADMAP
+**推荐阅读顺序**: PROJECT_BRIEF → requirements/PRD_v2 → requirements/USER_STORIES →
+planning/PRODUCT_ROADMAP
 
 ---
 
@@ -67,11 +68,20 @@
 
 **可复用的模板和参考资料**
 
+#### 📁 project/ - 项目模板
+
 - `NEW_PROJECT_GUIDE.md` - 🚀 新项目使用完整指南（推荐首先阅读）⭐
 - `QUICK_START_TEMPLATE.md` - 快速开始模板
-- `TEMPLATE_USAGE_GUIDE.md` - 模板使用指南
-- `REFERENCE_REPOS.md` - 参考仓库列表
 - `USER_REQUIREMENTS_TEMPLATE.md` - 用户需求输入模板
+
+#### 📁 management/ - 管理模板
+
+- `FILE_MANAGEMENT_GUIDE.md` - 文件管理使用指南
+- `TEMPLATE_USAGE_GUIDE.md` - 模板使用指南
+
+#### 📁 references/ - 参考资料
+
+- `REFERENCE_REPOS.md` - 参考仓库列表
 
 ---
 

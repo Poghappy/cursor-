@@ -34,6 +34,7 @@ make smart-generate      # 智能项目生成
 
 ```bash
 # 准备环境
+npm install       # 安装依赖（自动初始化 Git hooks）
 cp .env.example .env
 make setup
 
@@ -42,6 +43,11 @@ make dev          # 本地开发
 make lint         # 代码规范
 make test         # 测试
 make coverage     # 覆盖率
+
+# 提交代码（自动触发质量检查）
+git add .
+git commit -m "feat: add new feature"  # 自动 lint + format + 验证提交信息
+git push          # 自动运行测试 + 构建检查
 ```
 
 ### 🔧 Cursor IDE 故障排查
@@ -69,14 +75,23 @@ make optimize-cursor
 ```text
 .
 ├─ docs/                  # BRIEF/PRD/TASKS/TECH_DESIGN/TEST_PLAN/CHANGELOG
+│  ├─ INFRASTRUCTURE_GUIDE.md  # 基础设施使用指南 ⭐
+│  └─ summaries/          # 项目变更记录
 ├─ prompts/
 │  ├─ system.md          # 总控 System Prompt
 │  ├─ roles/             # 角色系统提示（po/pm/ba/pjm/arch/llme/dev/qa/ops/tw）
 │  └─ stages/            # 分阶段模板（user_story/prd/task_breakdown/...）
 ├─ .cursor/
 │  └─ rules/             # 函数式规则、交接 schema、权限矩阵
+├─ .github/
+│  └─ workflows/         # CI/CD 配置（自动化测试、部署）
+├─ .husky/               # Git hooks（自动代码检查）
 ├─ src/                  # 最小实现（按需生成）
 ├─ tests/                # 单测/契约/e2e（按需生成）
+├─ .editorconfig         # 编辑器统一配置
+├─ .env.example          # 环境变量模板
+├─ .nvmrc                # Node.js 版本锁定
+├─ commitlint.config.js  # 提交信息规范
 ├─ Makefile              # 一键质量与运维命令
 ├─ package.json          # 脚本/依赖
 └─ tsconfig.json
@@ -147,20 +162,21 @@ make agent-workflow
 
 ### 快速上手
 
-- **[🚀 新项目使用指南](docs/templates/NEW_PROJECT_GUIDE.md)** - 在新项目中使用本系统的完整指南 ⭐
-- [快速开始模板](docs/templates/QUICK_START_TEMPLATE.md) - 3分钟快速体验
-- [模板使用指南](docs/templates/TEMPLATE_USAGE_GUIDE.md) - 详细使用说明
+- **[🚀 新项目使用指南](docs/templates/project/NEW_PROJECT_GUIDE.md)** - 在新项目中使用本系统的完整指南 ⭐
+- [快速开始模板](docs/templates/project/QUICK_START_TEMPLATE.md) - 3分钟快速体验
+- [模板使用指南](docs/templates/management/TEMPLATE_USAGE_GUIDE.md) - 详细使用说明
 
 ### 系统文档
 
+- **[🔧 基础设施使用指南](docs/INFRASTRUCTURE_GUIDE.md)** - Git Hooks、CI/CD、代码规范完整指南 ⭐
 - [智能化系统使用指南](docs/cursor/INTELLIGENT_SYSTEM_GUIDE.md) - 智能Agent功能说明
 - [Cursor 实战指南](docs/cursor/CURSOR_GUIDE_2025-09-30.md) - Cursor IDE最佳实践
 - [故障排查指南](docs/cursor/CURSOR_TROUBLESHOOTING.md) - 常见问题解决
 
 ### 产品与项目
 
-- [产品需求文档](docs/product/PRD_v2.md) - 产品愿景和功能规划
-- [用户故事](docs/product/USER_STORIES.md) - 详细的用户场景和验收标准
+- [产品需求文档](docs/product/requirements/PRD_v2.md) - 产品愿景和功能规划
+- [用户故事](docs/product/requirements/USER_STORIES.md) - 详细的用户场景和验收标准
 - [MVP项目计划](docs/project/MVP_PROJECT_PLAN.md) - 4周MVP计划
 - [任务看板](docs/project/TASK_BOARD.md) - 实时任务状态
 
