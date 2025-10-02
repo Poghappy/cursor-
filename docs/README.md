@@ -67,6 +67,7 @@
 
 **可复用的模板和参考资料**
 
+- `NEW_PROJECT_GUIDE.md` - 🚀 新项目使用完整指南（推荐首先阅读）⭐
 - `QUICK_START_TEMPLATE.md` - 快速开始模板
 - `TEMPLATE_USAGE_GUIDE.md` - 模板使用指南
 - `REFERENCE_REPOS.md` - 参考仓库列表

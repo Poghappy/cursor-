@@ -145,10 +145,29 @@ make agent-workflow
 
 ## 📚 详细文档
 
-- [智能化系统使用指南](docs/INTELLIGENT_SYSTEM_GUIDE.md) - 完整的使用说明和最佳实践
-- [产品需求文档](docs/PRD.md) - 产品愿景和功能规划
-- [用户故事](docs/USER_STORIES.md) - 详细的用户场景和验收标准
-- [技术设计](docs/TECH_DESIGN.md) - 系统架构和技术选型
+### 快速上手
+
+- **[🚀 新项目使用指南](docs/templates/NEW_PROJECT_GUIDE.md)** - 在新项目中使用本系统的完整指南 ⭐
+- [快速开始模板](docs/templates/QUICK_START_TEMPLATE.md) - 3分钟快速体验
+- [模板使用指南](docs/templates/TEMPLATE_USAGE_GUIDE.md) - 详细使用说明
+
+### 系统文档
+
+- [智能化系统使用指南](docs/cursor/INTELLIGENT_SYSTEM_GUIDE.md) - 智能Agent功能说明
+- [Cursor 实战指南](docs/cursor/CURSOR_GUIDE_2025-09-30.md) - Cursor IDE最佳实践
+- [故障排查指南](docs/cursor/CURSOR_TROUBLESHOOTING.md) - 常见问题解决
+
+### 产品与项目
+
+- [产品需求文档](docs/product/PRD_v2.md) - 产品愿景和功能规划
+- [用户故事](docs/product/USER_STORIES.md) - 详细的用户场景和验收标准
+- [MVP项目计划](docs/project/MVP_PROJECT_PLAN.md) - 4周MVP计划
+- [任务看板](docs/project/TASK_BOARD.md) - 实时任务状态
+
+### 技术文档
+
+- [技术设计](docs/technical/TECH_DESIGN.md) - 系统架构和技术选型
+- [测试计划](docs/technical/TEST_PLAN.md) - 质量保证方案
 
 ## 许可证
 
